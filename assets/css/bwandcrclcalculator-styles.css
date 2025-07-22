@@ -1,0 +1,662 @@
+/* assets/css/bwandcrclcalculator-styles.css */
+
+/* Remove lines between calculator sections */
+#ibw-abw-calculator,
+#crcl-calculator {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+#ibw-abw-calculator .calculator-card,
+#crcl-calculator .calculator-card {
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Override specific styles from templatemo-style.css to remove lines and adjust spacing */
+section.tables {
+    border-top: none !important;
+    margin-top: 30px !important;
+    padding-top: 30px !important;
+}
+
+/* Apply card shadow, not section shadow */
+#ibw-abw-calculator .calculator-card,
+#crcl-calculator .calculator-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+
+/* Calculator Card Styling */
+.calculator-card {
+    background-color: #f7f7f7;
+    padding: 20px 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator-card > .row {
+    display: flex;
+    flex-grow: 1;
+    align-items: stretch;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.calculator-card .col-md-6 {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Section Heading Styling */
+.section-heading h2 {
+    color: #31323a;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+.section-heading p {
+    color: #7a7a7a;
+    font-size: 15px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Form Group Styling */
+.calculator-card .form-group {
+    margin-bottom: 20px;
+}
+
+.calculator-card label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #4a4a4a;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* Input and Select Styling */
+/* Reduced margin-bottom for all form controls in calculator cards */
+.calculator-card .form-control {
+    width: 100%;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #555;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    margin-bottom: 15px !important; /* Keep this to override templatemo's 40px */
+}
+
+.calculator-card .form-control:focus {
+    border-color: #535ba0;
+    box-shadow: 0 0 0 0.2rem rgba(83, 91, 160, 0.25);
+}
+
+.calculator-card select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%201%200%200-13%205.7L147.2%20202.7%2018.3%2075.1c-6.7-6.7-17.7-6.7-24.4%200-6.7%206.7-6.7%2017.7%200%2024.4l130.5%20127.9c6.7%206.7%2017.7%206.7%2024.4%200l130.5-127.9c6.7-6.7%206.7-17.7%200-24.4-6.8-6.8-17.7-6.8-24.5-.1z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
+}
+
+/* Result Display Styling */
+.result-display {
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    flex-grow: 1;
+}
+
+.result-display .result-text {
+    background-color: #e9ecef;
+    padding: 16px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 75px;
+    margin-bottom: 10px;
+    font-size: unset;
+    font-weight: unset;
+    color: unset;
+    text-align: unset;
+    line-height: unset;
+}
+
+.result-display .result-text:last-child {
+    margin-bottom: 0;
+}
+
+.result-label {
+    font-size: 13px;
+    color: #7a7a7a;
+    margin-bottom: 2px;
+    font-weight: normal;
+    text-align: left;
+}
+
+.result-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #31323a;
+    line-height: 1.2;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.result-value.error-message {
+    color: red;
+    font-weight: normal;
+    font-size: 14px;
+    padding-top: 8px;
+}
+
+/* Notes/Disclaimer Styling */
+.notes {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px dashed #e0e0e0;
+    font-size: 14px;
+    color: #7a7a7a;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.notes strong {
+    color: #d9534f;
+}
+
+/* --- Custom styles for precise SCr input alignment --- */
+.crcl-calculator .crcl-scr-input-group {
+    display: flex; /* Make it a flex container */
+    align-items: center; /* Vertically align items */
+    margin-bottom: 20px; /* Consistent spacing below the group */
+    gap: 5px; /* Small gap between direct flex items */
+    flex-wrap: nowrap !important; /* Force no wrapping for this group */
+    justify-content: flex-start; /* Align items to the start */
+    width: 100%; /* Ensure the flex container takes full available width */
+    /* If still wrapping, consider setting a max-width on the parent column */
+}
+
+.crcl-calculator .crcl-scr-input-group label.crcl-scr-label {
+    flex-shrink: 0 !important; /* Prevent the label from shrinking */
+    flex-grow: 0 !important; /* Prevent the label from growing */
+    margin-bottom: 0 !important; /* Remove any bottom margin */
+    padding-right: 0 !important; /* Remove any right padding */
+    white-space: nowrap !important; /* Force no wrap on label text */
+    font-size: 16px !important; /* Ensure font size is consistent */
+    line-height: 1.2 !important; /* Adjust line height for better alignment */
+    padding-top: 0 !important; /* Remove any extra padding */
+    padding-bottom: 0 !important; /* Remove any extra padding */
+    width: 170px !important; /* Explicitly set label width, adjust if needed */
+    max-width: 170px !important; /* Ensure it doesn't expand beyond this */
+    min-width: 170px !important; /* Ensure it doesn't shrink below this */
+    text-align: left; /* Align text within its new fixed width */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.crcl-calculator .crcl-scr-input-group input.crcl-scr-input {
+    flex-shrink: 0 !important; /* Prevent the input from shrinking */
+    flex-grow: 0 !important; /* Prevent the input from growing */
+    width: 80px !important; /* Fixed width for the input */
+    max-width: 80px !important; /* Max width to ensure it doesn't expand */
+    min-width: 60px !important; /* Minimum width to avoid it becoming too small */
+    margin-bottom: 0 !important; /* Remove any bottom margin */
+    padding: 8px 10px !important; /* Adjust padding for a tighter look */
+    height: auto !important; /* Allow height to adjust based on padding */
+    line-height: normal !important; /* Reset line-height that might cause issues */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.crcl-calculator .crcl-scr-input-group select.crcl-scr-unit {
+    flex-shrink: 0 !important; /* Prevent the select from shrinking */
+    flex-grow: 0 !important; /* Prevent the select from growing */
+    width: 100px !important; /* Fixed width for the select */
+    max-width: 100px !important; /* Max width to ensure it doesn't expand */
+    min-width: 80px !important; /* Minimum width for the select dropdown */
+    margin-bottom: 0 !important; /* Remove any bottom margin */
+    padding: 8px 10px 8px 5px !important; /* Adjust padding for select */
+    height: auto !important; /* Allow height to adjust based on padding */
+    line-height: normal !important; /* Reset line-height */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+
+/* Overriding specific problematic styles from templatemo-style.css with higher specificity */
+/* We already applied !important to individual properties above, but keeping these if needed for other inputs */
+/*
+.calculator-card input[type="number"],
+.calculator-card select,
+.calculator-card input[type="text"],
+.calculator-card textarea {
+    margin-bottom: 15px !important;
+}
+*/
+/* Ensure the .forms override doesn't affect our specific SCr inputs */
+.forms .calculator-card input,
+.forms .calculator-card select,
+.forms .calculator-card textarea {
+    margin-bottom: 15px !important; /* This should still apply to other form inputs in the calculator */
+}
+
+/* --- Specific Styles for CrCl Weight Selection Section --- */
+
+/* Main container for the weight selection group */
+.weight-selection-group {
+    background-color: #f8f9fa;
+    border: 1px solid #e2e6ea;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Label "เลือกน้ำหนักสำหรับ CrCl:" */
+.weight-selection-group label.mb-2 {
+    font-size: 0.95rem;
+    color: #343a40;
+    margin-bottom: 10px !important;
+    display: block;
+}
+
+/* Container for the radio pills - now allows wrapping on small screens */
+.crcl-weight-options {
+    display: flex;
+    flex-wrap: nowrap; /* Default: try to keep on one line */
+    justify-content: center;
+    gap: 7px;
+    margin-bottom: 10px;
+}
+
+/* Styling for the pill-like radio buttons */
+.btn-radio-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 7px;
+    background-color: #e9ecef; /* Default background for unselected */
+    color: #495057; /* Default text color for unselected */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    flex-shrink: 0;
+    flex-grow: 0;
+    text-align: center;
+    font-size: 13px;
+    min-width: 80px;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.btn-radio-pill:hover {
+    background-color: #dee2e6;
+}
+
+/* Unified style for ALL checked weight selection buttons */
+input[type="radio"][name="crcl-weight-type"]:checked + .btn-radio-pill {
+    background-color: #28a745; /* Green - Different from primary blue, not like Warfarin example */
+    color: #fff;
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+
+/* Ensure the pull button is full width below the pills */
+.weight-selection-group .btn-primary {
+    width: 100%;
+    font-size: 14px;
+    padding: 7px 10px;
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+
+@media (max-width: 768px) {
+    #main > .inner {
+        padding: 30px 15px;
+    }
+    .calculator-card {
+        padding: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        flex-direction: column;
+    }
+    .section-heading h2,
+    .section-heading p {
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    .calculator-card > .row {
+        flex-direction: column;
+    }
+    .calculator-card .col-md-6 {
+        max-width: 100%;
+        flex: 0 0 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-bottom: 20px;
+    }
+    .calculator-card .col-md-6:last-child {
+        margin-bottom: 0;
+    }
+    .calculator-card .form-group {
+        margin-bottom: 15px;
+    }
+    .calculator-card label {
+        margin-bottom: 5px;
+    }
+    .calculator-card .form-control {
+        padding: 6px 15px;
+        font-size: 14px;
+        margin-bottom: 10px !important;
+    }
+    .result-display {
+        margin-top: 0;
+        padding: 15px;
+        height: auto;
+    }
+    .result-display .result-text {
+        padding: 16px 10px;
+        min-height: 65px;
+        margin-bottom: 8px;
+    }
+    .result-label {
+        font-size: 12px;
+    }
+    .result-value {
+        font-size: 16px;
+    }
+    .notes {
+        margin-top: 20px;
+        padding-top: 15px;
+        font-size: 13px;
+    }
+    /* Mobile specific adjustments for CrCl weight selection */
+    .weight-selection-group {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    .weight-selection-group label.mb-2 {
+        font-size: 0.9rem;
+        margin-bottom: 8px !important;
+    }
+    /* Allow pills to wrap on smaller screens */
+    .crcl-weight-options {
+        gap: 5px;
+        margin-bottom: 8px;
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: center; /* Center items when wrapped */
+    }
+    .btn-radio-pill {
+        padding: 6px 9px;
+        font-size: 12px;
+        min-width: unset;
+        flex-basis: auto;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+    .weight-selection-group .btn-primary {
+        font-size: 13px;
+        padding: 6px 9px;
+    }
+
+    /* SCr row adjustments for mobile - IMPORTANT: Fixed widths for single line */
+    .crcl-calculator .crcl-scr-input-group {
+        flex-wrap: nowrap !important; /* Force no wrap on mobile for SCr line */
+        justify-content: flex-start; /* Align to start */
+        gap: 5px; /* Maintain small gap */
+    }
+    .crcl-calculator .crcl-scr-input-group label.crcl-scr-label {
+        flex-shrink: 0 !important; /* Don't shrink label */
+        flex-grow: 0 !important; /* Don't grow label */
+        white-space: nowrap !important; /* Force no wrap on label */
+        font-size: 14px !important; /* Adjust font size for better fit */
+        line-height: 1.2 !important; /* Adjust line height for better alignment */
+        width: 140px !important; /* Explicitly set width for label on medium screens */
+        max-width: 140px !important;
+        min-width: 140px !important;
+        text-align: left; /* Keep left alignment for better readability */
+    }
+    .crcl-calculator .crcl-scr-input-group input.crcl-scr-input {
+        flex-shrink: 0 !important; /* Don't shrink input */
+        flex-grow: 0 !important; /* Don't grow input */
+        width: 60px !important; /* Fixed width for input on small screens */
+        max-width: 60px !important; /* Max width to ensure it doesn't expand */
+        min-width: 60px !important; /* Minimum width to avoid it becoming too small */
+        padding: 6px 8px !important; /* Adjust padding for a tighter look */
+        height: auto !important; /* Ensure height is flexible */
+        line-height: normal !important; /* Ensure line-height is normal */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+    .crcl-calculator .crcl-scr-input-group select.crcl-scr-unit {
+        flex-shrink: 0 !important; /* Don't shrink select */
+        flex-grow: 0 !important; /* Don't grow select */
+        width: 80px !important; /* Fixed width for select on small screens */
+        max-width: 80px !important; /* Max width to ensure it doesn't expand */
+        min-width: 80px !important; /* Minimum width for the select dropdown */
+        padding: 6px 8px 6px 5px !important; /* Adjust padding for select */
+        height: auto !important; /* Ensure height is flexible */
+        line-height: normal !important; /* Ensure line-height is normal */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator-card {
+        padding: 15px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .section-heading h2,
+    .section-heading p {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    .calculator-card .form-group {
+        margin-bottom: 10px;
+    }
+    .calculator-card .form-control {
+        padding: 5px 10px;
+        font-size: 13px;
+        margin-bottom: 8px !important;
+    }
+    .calculator-card label {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+    .result-display {
+        margin-top: 0;
+        padding: 10px;
+    }
+    .result-display .result-text {
+        padding: 16px 8px;
+        min-height: 55px;
+        margin-bottom: 5px;
+    }
+    .result-label {
+        font-size: 10px;
+    }
+    .result-value {
+        font-size: 14px;
+    }
+    .notes {
+        margin-top: 15px;
+        padding-top: 10px;
+        font-size: 12px;
+    }
+    /* Further adjustments for very small screens */
+    .crcl-weight-options {
+        gap: 4px;
+    }
+    .btn-radio-pill {
+        padding: 5px 8px;
+        font-size: 11px;
+    }
+
+    /* SCr row adjustments for extra small screens - More aggressive fixed widths */
+    .crcl-calculator .crcl-scr-input-group {
+        gap: 3px; /* Even smaller gap */
+        flex-wrap: nowrap !important; /* Ensure no wrapping on extremely small screens */
+        justify-content: flex-start;
+    }
+    .crcl-calculator .crcl-scr-input-group label.crcl-scr-label {
+        font-size: 12px !important; /* Smaller font for label */
+        white-space: nowrap !important; /* Important for preventing wrap */
+        flex-shrink: 0 !important; /* Important */
+        flex-grow: 0 !important; /* Important */
+        width: 115px !important; /* Adjust this value as needed to fit the text 'ค่า Serum Creatinine (SCr):' on very small screens */
+        max-width: 115px !important;
+        min-width: 115px !important;
+        text-align: right; /* Align text to the right within its fixed width */
+        padding-right: 5px !important; /* Add a small gap between label and input */
+    }
+    .crcl-calculator .crcl-scr-input-group input.crcl-scr-input {
+        width: 50px !important; /* Even smaller fixed width for input */
+        max-width: 50px !important;
+        min-width: 50px !important;
+        padding: 5px 5px !important; /* Even tighter padding */
+        height: auto !important; /* Ensure height is flexible */
+        line-height: normal !important; /* Ensure line-height is normal */
+        flex-shrink: 0 !important; /* Important */
+        flex-grow: 0 !important; /* Important */
+    }
+    .crcl-calculator .crcl-scr-input-group select.crcl-scr-unit {
+        width: 60px !important; /* Even smaller fixed width for select */
+        max-width: 60px !important;
+        min-width: 60px !important;
+        padding: 5px 5px 5px 3px !important; /* Even tighter padding for select */
+        height: auto !important; /* Ensure height is flexible */
+        line-height: normal !important; /* Ensure line-height is normal */
+        flex-shrink: 0 !important; /* Important */
+        flex-grow: 0 !important; /* Important */
+    }
+}
+
+/* Add this to your assets/css/bwandcrclcalculator-styles.css file */
+
+.toggle-formula-btn {
+    margin-top: 10px; /* Adjust spacing as needed */
+    margin-bottom: 10px;
+    width: auto; /* Make button fit content */
+    padding: 5px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    display: block; /* Make it a block element to take full width if desired, or inline-block */
+    margin-left: 0; /* Align left */
+}
+
+.formula-content {
+    display: none; /* Hide formulas by default */
+    padding: 10px;
+    border: 1px dashed #e0e0e0;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: #f0f0f0;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.formula-content p {
+    margin-bottom: 0; /* Remove extra margin from paragraphs inside formula content */
+}
+
+/* Adjustments for notes section if needed */
+.calculator-card .notes {
+    padding-top: 15px; /* Ensure space above the button */
+    border-top: 1px dashed #e0e0e0; /* Keep the dashed line */
+}
+
+/* If you need more specific control over button alignment in notes */
+.calculator-card .notes button.toggle-formula-btn {
+    text-align: left;
+    margin-left: 0;
+}
+
+/* --- การแก้ไขสำหรับ CrCl SCr Input Group --- */
+
+/* โดยรวมของ form-group ที่มี label, input, select ในบรรทัดเดียวกัน */
+.calculator-card .form-group.crcl-scr-input-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap; /* เปลี่ยนกลับเป็น nowrap เพื่อป้องกันการขึ้นบรรทัดบนเดสก์ท็อป */
+    margin-bottom: 15px;
+}
+
+/* สำหรับ Label ของ "ค่า Serum Creatinine (SCr):" */
+.calculator-card .form-group.crcl-scr-input-group .crcl-scr-label {
+    flex-shrink: 0;
+    margin-right: 10px;
+    white-space: nowrap;
+    min-width: 150px;
+    text-align: right;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: auto !important;
+    line-height: inherit;
+    margin-bottom: 0 !important;
+    text-align: left;
+}
+
+/* สำหรับ Input Field ของ SCr */
+.calculator-card .form-group.crcl-scr-input-group .crcl-scr-input {
+    flex-grow: 1; /* ให้ input ยืดเต็มพื้นที่ที่เหลือ */
+    max-width: 150px; /* เพิ่ม max-width ให้ input field กว้างขึ้นเล็กน้อย */
+    margin-right: 5px;
+    height: 40px !important;
+    line-height: 40px !important;
+    margin-bottom: 0 !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+/* สำหรับ Select หน่วยของ SCr */
+.calculator-card .form-group.crcl-scr-input-group .crcl-scr-unit {
+    flex-shrink: 0;
+    width: 90px !important; /* หรือลอง 100px ถ้า 90px ยังแคบไปสำหรับข้อความ */
+    height: 40px !important;
+    line-height: 40px !important; /* ควรทำให้ข้อความอยู่ตรงกลางแนวตั้ง */
+    margin-bottom: 0 !important;
+    padding: 0 5px !important; /* ปรับ padding: 0px ที่ด้านบน/ล่าง และ 5px ที่ด้านซ้าย/ขวา */
+    text-align-last: center; /* จัดข้อความใน select box ให้อยู่ตรงกลางแนวนอน */
+    vertical-align: middle; /* เพิ่มคุณสมบัตินี้เพื่อช่วยจัดกลางแนวตั้ง */
+    -webkit-appearance: none; /* สำหรับบาง browser ที่อาจมีการจัดค่าเริ่มต้น */
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.7L146.2%20220.3%2017.4%2075.1c-3.1-3.5-7.7-5.6-12.9-5.6-5.2%200-9.8%202.1-12.9%205.6-6.5%207.3-6.5%2018.8%200%2026.1L134.1%20269c6.3%207.2%2016.7%207.2%2023%200l128.5-147.3c6.5-7.3%206.5-18.8%200-26.1z%22%2F%3E%3C%2Fsvg%3E'); /* เพิ่มลูกศร Dropdown */
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+}
+.error-message {
+    color: red !important; /* ใช้ !important เพื่อให้แน่ใจว่าสีจะถูกบังคับใช้ */
+    font-weight: bold; /* อาจจะเพิ่มความหนาของตัวอักษรเพื่อเน้น */
+}
+

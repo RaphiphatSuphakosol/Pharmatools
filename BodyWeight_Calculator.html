@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Pharma Tools</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEbFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/templatemo-style.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/warfarin-calculator.css">
+    <link rel="stylesheet" href="assets/css/bwandcrclcalculator-styles.css">
+  </head>
+<body class="is-preload">
+    <div id="wrapper">
+      <div id="main">
+          <div class="inner">
+            <header id="header">
+              <div class="logo">
+                <a href="BodyWeight_Calculator.html">PharmaTools</a>
+              </div>
+            </header>
+
+            <section id="ibw-abw-calculator" class="tables">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-heading">
+                                <h2>โปรแกรมคำนวณ IBW, AjBW, BMI และ BSA</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="calculator-card">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form id="ibw-abw-form">
+                                            <div class="form-group">
+                                                <label for="gender-ibw">เพศ:</label>
+                                                <select id="gender-ibw" class="form-control" required>
+                                                    <option value="">เลือกเพศ</option>
+                                                    <option value="male">ชาย</option>
+                                                    <option value="female">หญิง</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="height-ibw">ส่วนสูง (เซนติเมตร):</label>
+                                                <input type="number" id="height-ibw" class="form-control" placeholder="เช่น 170" step="0.1" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="actual-weight-abw">น้ำหนักตัวจริง (กิโลกรัม):</label>
+                                                <input type="number" id="actual-weight-abw" class="form-control" placeholder="เช่น 75" step="0.1" required>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="result-display">
+                                            <p id="result-ibw" class="result-text"></p>
+                                            <p id="result-ibw-diff-aw" class="result-text"></p>
+                                            <p id="result-abw" class="result-text"></p>
+                                            <p id="result-bmi" class="result-text"></p>
+                                            <p id="result-bsa" class="result-text"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notes">
+                                    <p>
+                                        <strong>หมายเหตุ:</strong> <br>
+                                        - การคำนวณ IBW ใช้สูตร Devine (1974) สำหรับผู้ใหญ่<br>
+                                    </p>
+                                    <p>
+                                        <strong>เกณฑ์ BMI:</strong><br>
+                                        น้อยกว่า 18.5: น้ำหนักน้อยกว่าเกณฑ์<br>
+                                        18.5 – 22.9: น้ำหนักปกติ<br>
+                                        23 – 24.9: น้ำหนักเกิน<br>
+                                        25 – 29.9: โรคอ้วนระดับ 1<br>
+                                        มากกว่า 30: โรคอ้วนระดับ 2
+                                    </p>
+                                    <div id="ibw-abw-formula" class="formula-content">
+                                        <p>
+                                            1. น้ำหนักตัวที่เหมาะสม (Ideal Body Weight, IBW):<br>
+                                            - สำหรับเพศชาย: IBW (kg) = 50 + 2.3 x (ส่วนสูงเป็นนิ้ว - 60)<br>
+                                            - สำหรับเพศหญิง: IBW (kg) = 45.5 + 2.3 x (ส่วนสูงเป็นนิ้ว - 60)<br>
+                                            (โดย 1 นิ้ว = 2.54 เซนติเมตร)<br>
+                                            <br>
+                                            2. น้ำหนักตัวที่ปรับแก้ (Adjusted Body Weight, ABW):<br>
+                                            - สูตร: ABW (kg) = IBW + 0.4 x (น้ำหนักตัวจริง - IBW)<br>
+                                            <br>
+                                            3. ดัชนีมวลกาย (Body Mass Index, BMI):<br>
+                                            - สูตร: BMI (kg/m²) = น้ำหนัก (kg) / [ส่วนสูง (m)]²<br>
+                                            <br>
+                                            4. Body Surface Area (BSA):<br>
+                                            - ใช้ Mosteller formula<br>
+                                            - สูตร:BSA (m²) = √( [ส่วนสูง (cm) x น้ำหนัก (kg)] / 3600 )
+                                        </p>
+                                    </div>
+                                    <button class="btn btn-secondary btn-sm toggle-formula-btn" data-target="ibw-abw-formula">แสดงสูตรที่ใช้ในการหาน้ำหนัก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="crcl-calculator" class="tables">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-heading">
+                                <h2>โปรแกรมคำนวณ CrCl (Creatinine Clearance)</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="calculator-card">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form id="crcl-form">
+                                            <div class="form-group weight-selection-group" id="crcl-weight-selection-section">
+                                                <label class="mb-2">เลือกน้ำหนักสำหรับ CrCl:</label>
+                                                <div class="crcl-weight-options">
+                                                    <input type="radio" name="crcl-weight-type" id="radio-actual-weight" value="actual" class="d-none" checked>
+                                                    <label for="radio-actual-weight" class="btn-radio-pill radio-actual-weight-label">
+                                                        Actual Body Weight
+                                                    </label>
+
+                                                    <input type="radio" name="crcl-weight-type" id="radio-ibw" value="ibw" class="d-none">
+                                                    <label for="radio-ibw" class="btn-radio-pill radio-ibw-label">
+                                                        Ideal Body weight
+                                                    </label>
+
+                                                    <input type="radio" name="crcl-weight-type" id="radio-abw" value="abw" class="d-none">
+                                                    <label for="radio-abw" class="btn-radio-pill radio-abw-label">
+                                                        Adjusted body weight
+                                                    </label>
+                                                </div>
+                                                <button type="button" id="fetch-weight-btn" class="btn btn-primary mt-2 w-100">ดึงน้ำหนักจากส่วนคำนวณ BW</button>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="gender-crcl">เพศ:</label>
+                                                <select id="gender-crcl" class="form-control" required>
+                                                    <option value="">เลือกเพศ</option>
+                                                    <option value="male">ชาย</option>
+                                                    <option value="female">หญิง</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="age-crcl">อายุ (ปี):</label>
+                                                <input type="number" id="age-crcl" class="form-control" placeholder="เช่น 45" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="weight-crcl">น้ำหนักตัว (กิโลกรัม):</label>
+                                                <input type="number" id="weight-crcl" class="form-control" placeholder="เช่น 60" step="0.1" required>
+                                            </div>
+
+                                            <div class="form-group d-flex align-items-center crcl-scr-input-group">
+                                                <label for="scr-crcl" class="col-form-label crcl-scr-label">Serum Creatinine (Scr) :</label>
+                                                <input type="number" id="scr-crcl" class="form-control crcl-scr-input" placeholder="เช่น 0.9" step="0.01" required>
+                                                <select id="scr-unit" class="form-control crcl-scr-unit" required>
+                                                    <option value="mg/dL">mg/dL</option>
+                                                    <option value="umol/L">µmol/L</option>
+                                                </select>
+                                            </div>
+                                            </form>
+                                    </div>
+                                </div>
+                                <div class="result-display" style="margin-top: 20px;">
+                                    <p id="result-crcl" class="result-text"></p>
+                                </div>
+                                <div class="notes">
+                                    <p>
+                                        <strong>หมายเหตุ:</strong> <br>
+                                        - ถ้า Actual body weight มากกว่า Ideal Body weight เกิน 20% ก็ควรใช้ Adjusted body weight คำนวณ<br>
+                                        - การคำนวณนี้ใช้สูตร Cockcroft-Gaul
+                                    </p>
+                                    <div id="crcl-formula" class="formula-content">
+                                        <p>
+                                            Creatinine Clearance (CrCl):<br>
+                                            - ใช้สูตร Cockcroft-Gault (สำหรับผู้ใหญ่)<br>
+                                            - สูตรสำหรับเพศชาย: CrCl (mL/min) = (140 - อายุ) x น้ำหนัก (kg) / (Serum Creatinine (mg/dL) x 72)<br>
+                                            - สูตรสำหรับเพศหญิง: CrCl (mL/min) = [(140 - อายุ) x น้ำหนัก (kg) / (Serum Creatinine (mg/dL) x 72)] x 0.85<br>
+                                            <br>
+                                            การแปลงหน่วย Serum Creatinine (SCr):<br>
+                                            - หากค่า SCr เป็น µmol/L ให้แปลงเป็น mg/dL โดย: SCr (mg/dL) = Cr (µmol/L) / 88.4
+                                        </p>
+                                    </div>
+                                    <button class="btn btn-secondary btn-sm toggle-formula-btn" data-target="crcl-formula">แสดงสูตรที่ใช้หา CrCl</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </div>
+      </div>
+      <div id="sidebar">
+          <div class="inner">
+            <section id="search" class="alt" style="text-align: center;">
+               <a href="BodyWeight_Calculator.html">
+               <img src="image/logo.png" alt="Search" class="search-icon" />
+               </a>
+            </section>
+            <nav id="menu">
+              <ul>
+                <li><a href="BodyWeight_Calculator.html">หน้าหลัก</a></li>
+                <li><a href="#ibw-abw-calculator">โปรแกรมคำนวณน้ำหนักทางคลินิก</a></li>
+                <li><a href="#crcl-calculator">โปรแกรมคำนวณ CrCl</a></li>
+                <li>
+                <span class="opener">โปรแกรม Warfarin</span>
+                  <ul>
+                    <li><a href="Warfarin_Calculator.html">คำนวณขนาดยา Warfarin</a></li>
+                    <li><a href="Warfarin_Calculator.html">เช็ครายการ Drug interaction Warfarin</a></li>
+                  </ul>
+                </li>
+                <li><a href="Warfarin_Calculator.html">โปรแกรมคำนวณขนาดยาฉีด</a></li>
+                <li><a href="Warfarin_Calculator.html">โปรแกรมคำนวณขนาดยาน้ำสำหรับเด็กเล็ก</a></li>
+                <li><a href="Warfarin_Calculator.html">โปรแกรมคำนวณขนาดยาสำหรับเด็กโต</a></li>
+                <li><a href="Warfarin_Calculator.html">ยาที่ห้ามใช้ในหญิงตั้งครรภ์และให้นมบุตร</a></li>
+                <li><a href="Warfarin_Calculator.html">ยาและอาหารที่ห้ามรับประทานในผู้ป่วย G6PD</a></li>
+              </ul>
+            </nav>
+            <footer id="footer">
+              <p class="copyright" >จัดทำโดย นส.ภ. ระพีพัฒน์ ศุภโกศล <br>คณะเภสัชศาสตร์ มหาวิทยาลัยมหาสารคาม
+              <br>ช่องทางติดต่อ <a rel="nofollow" href="https://www.facebook.com/raphiphat.suphakosol">Facebook</a></p>
+            </footer>
+          </div>
+        </div>
+    </div>
+  <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/transition.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/bwandcrclcalculator.js"></script>
+</body>
+</html>

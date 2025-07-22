@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Pharma Tools</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEbFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="assets/css/templatemo-style.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+
+    <link rel="stylesheet" href="assets/css/warfarin-calculator.css">
+
+  </head>
+
+<body class="is-preload">
+
+    <div id="wrapper">
+
+      <div id="main">
+          <div class="inner">
+
+            <header id="header">
+              <div class="logo">
+                <a href="Warfarin_Calculator.html">PharmaTools</a>
+              </div>
+            </header>
+
+            <section class="right-image">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="left-content">
+                      <img src="image/GuidelineWarfarinAdjust.png" alt="">
+                      <div class="reference-label">
+                          อ้างอิง <br>1.university of Wisconsin – UW Health. Warfarin Management-Adult-Inpatient Clinical Practice 2011.
+                                <br>2.สมาคมแพทย์โรคหัวใจแห่งประเทศไทย ในพระบรมราชูปถัมภ์.แนวทางการรักษาผู้ป่วยด้วยยาต้านการแข็งตัวของเลือดชนิดรับประทาน 2553.
+                                <br>3.สุภารัตน์ วัฒนสมบัติ (โรงพยาบาลเชียงรายประชานุเคราะห์) common pitfall in warfarin management. 2560.<br><br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="warfarin-calculator">
+                          <h3>คำนวณขนาดยา Warfarin</h3>
+                          <div class="input-row current-dose">
+                              <label>ขนาดยาปัจจุบัน<span style="color: red;"> (เลือก)</span></label>
+                              <select id="currentDose" class="dose-select"></select>
+                              <span>mg/week</span>
+                          </div>
+
+                          <div class="input-row target-dose">
+                              <label>ขนาดยาที่ต้องการ<span style="color: red;"> (เลือก)</span></label>
+                              <select id="targetDose" class="dose-select"></select>
+                              <span>mg/week</span>
+                          </div>
+
+                          <div class="button-grid">
+                              <button class="positive" data-percentage="5">+5%</button>
+                              <button class="positive" data-percentage="10">+10%</button>
+                              <button class="positive" data-percentage="15">+15%</button>
+                              <button class="positive" data-percentage="20">+20%</button>
+                              <button class="negative" data-percentage="-5">-5%</button>
+                              <button class="negative" data-percentage="-10">-10%</button>
+                              <button class="negative" data-percentage="-20">-20%</button>
+                              <button class="negative" data-percentage="-15">-15%</button>
+                          </div>
+
+                          <div class="output-section">
+                              <div class="output-row change-percentage" id="actualChangePercent">
+                                  <div class="label">ความเปลี่ยนแปลงจริง <br>(%)</div>
+                                  <div class="value">
+                                      <span class="icon" id="percentIcon"></span> <span id="percentText"></span> 0.00%
+                                  </div>
+                              </div>
+
+                              <div class="output-row change-dose" id="changedDose">
+                                  <div class="label">ขนาดยาที่เปลี่ยนแปลง <br>(mg/week)</div>
+                                  <div class="value">
+                                      <span class="icon" id="doseIcon"></span> <span id="doseText"></span> 0.00 mg/week
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                  <section class="regimen-section">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="regimen-calculator-container">
+                                <div class="pill-selection-group">
+                                    <h3>Regimen ที่แนะนำ</h3>
+                                    <h6>เลือกขนาดยาที่มีในโรงพยาบาล</h6>
+                                    <div class="pill-options-container">
+                                        <input type="checkbox" id="pill2mg" value="2.0" checked>
+                                        <label for="pill2mg" class="pill-option-label">
+                                            <img src="image/warf2.0.png" alt="2 mg" class="pill-selection-image">
+                                            <span>เม็ด 2 mg</span>
+                                        </label>
+
+                                        <input type="checkbox" id="pill3mg" value="3.0" checked>
+                                        <label for="pill3mg" class="pill-option-label">
+                                            <img src="image/warf3.0.png" alt="3 mg" class="pill-selection-image">
+                                            <span>เม็ด 3 mg</span>
+                                        </label>
+
+                                        <input type="checkbox" id="pill5mg" value="5.0" checked>
+                                        <label for="pill5mg" class="pill-option-label">
+                                            <img src="image/warf5.0.png" alt="5 mg" class="pill-selection-image">
+                                            <span>เม็ด 5 mg</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <table class="regimen-table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>จันทร์</th>
+                                            <th>อังคาร</th>
+                                            <th>พุธ</th>
+                                            <th>พฤหัส</th>
+                                            <th>ศุกร์</th>
+                                            <th>เสาร์</th>
+                                            <th>อาทิตย์</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="regimenTableBody">
+                                        <tr id="pillImageRow">
+                                            <td class="row-label">รูปเม็ดยา</td>
+                                        </tr>
+                                        <tr id="dailyDoseRow">
+                                            <td class="row-label">ขนาดยาต่อวัน</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <section class="appointment-calculator-section">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="appointment-calculator">
+                                <h3>เครื่องมือคำนวณวันนัด</h3>
+                                <div class="appointment-inputs-row">
+                                    <div class="input-group-third">
+                                        <label for="startDateInput">วันที่เริ่มต้นคำนวณ:</label>
+                                        <input type="date" id="startDateInput">
+                                        <span class="input-hint">* เลือกวันที่คุณต้องการใช้เป็นจุดเริ่มต้นการคำนวณ</span>
+                                    </div>
+
+                                    <div class="input-group-third">
+                                        <label for="specificDateInput">วันนัดเฉพาะ:</label>
+                                        <input type="date" id="specificDateInput">
+                                        <span class="input-hint">* วันนัดที่ระบุจะแทนที่การระบุจำนวนวัน</span>
+                                    </div>
+
+                                    <div class="input-group-third">
+                                        <label for="daysInput">จำนวนวัน:</label>
+                                        <div class="days-input-control"> <button id="subtractDaysBtn" class="day-mod-btn" data-step="-1">-</button>
+                                            <input type="number" id="daysInput" placeholder="เช่น 7, 14" value="0">
+                                            <button id="addDaysBtn" class="day-mod-btn" data-step="1">+</button>
+                                        </div>
+                                        <span class="input-hint">* ระบุจำนวนวันนัดโดยตรง</span>
+                                    </div>
+                                </div>
+                                <div class="regimen-summary-container">
+                                    <div id="regimenSummary">
+                                        <p class="summary-placeholder">กำลังคำนวณสรุปเม็ดยา...</p> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+              </div>
+            </section>
+          </div>
+      </div>
+      <div id="sidebar">
+          <div class="inner">
+            <section id="search" class="alt" style="text-align: center;">
+               <a href="BodyWeight_Calculator.html">
+               <img src="image/logo.png" alt="Search" class="search-icon" />
+               </a>
+            </section>
+            <nav id="menu">
+              <ul>
+                <li><a href="BodyWeight_Calculator.html">หน้าหลัก</a></li>
+                <li><a href="BodyWeight_Calculator.html?_ijt=mjtoitju1eg9u254rmlpl5fm7e&_ij_reload=RELOAD_ON_SAVE#ibw-abw-calculator">โปรแกรมคำนวณน้ำหนักทางคลินิก</a></li>
+                <li><a href="BodyWeight_Calculator.html?_ijt=mjtoitju1eg9u254rmlpl5fm7e&_ij_reload=RELOAD_ON_SAVE#crcl-calculator">โปรแกรมคำนวณ CrCl</a></li>
+                <li>
+                <span class="opener">โปรแกรม Warfarin</span>
+                  <ul>
+                    <li><a href="Warfarin_Calculator.html">คำนวณขนาดยา Warfarin</a></li>
+                    <li><a href="Warfarin_Calculator.html">เช็ครายการ Drug interaction Warfarin</a></li>
+                  </ul>
+                </li>
+                <li><a href="Warfarin_Calculator.html">โปรแกรมคำนวณขนาดยาฉีด</a></li>
+                <li><a href="Warfarin_Calculator.html">โปรแกรมคำนวณขนาดยาน้ำสำหรับเด็กเล็ก</a></li>
+                <li><a href="Warfarin_Calculator.html">โปรแกรมคำนวณขนาดยาสำหรับเด็กโต</a></li>
+                <li><a href="Warfarin_Calculator.html">ยาที่ห้ามใช้ในหญิงตั้งครรภ์และให้นมบุตร</a></li>
+                <li><a href="Warfarin_Calculator.html">ยาและอาหารที่ห้ามรับประทานในผู้ป่วย G6PD</a></li>
+              </ul>
+            </nav>
+            <footer id="footer">
+              <p class="copyright" >จัดทำโดย นส.ภ. ระพีพัฒน์ ศุภโกศล <br>คณะเภสัชศาสตร์ มหาวิทยาลัยมหาสารคาม
+              <br>ช่องทางติดต่อ <a rel="nofollow" href="https://www.facebook.com/raphiphat.suphakosol">Facebook</a></p>
+            </footer>
+          </div>
+        </div>
+    </div>
+  <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/transition.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/warfarin-calculator.js"></script>
+</body>
+</html>
