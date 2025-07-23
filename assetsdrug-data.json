@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Paracetamol",
+    "initialConcentration": 24,
+    "initialDosageOption": {
+      "display": "10-15 mg/kg/dose",
+      "min": 10,
+      "max": 15,
+      "unit": "mg/dose"
+    },
+    "initialFrequencyOption": {
+      "display": "??? 4-6 ???????",
+      "dosesPerDay": 1,
+      "text": "(??????? 5 ?????/???)",
+      "frequencyText": "??? 4-6 ???????"
+    },
+    "concentrations": [
+      {
+        "display": "60mg/0.6ml",
+        "mgPerMl": 100
+      },
+      {
+        "display": "80mg/0.8ml",
+        "mgPerMl": 100
+      },
+      {
+        "display": "120mg/5ml",
+        "mgPerMl": 24
+      },
+      {
+        "display": "125mg/5ml",
+        "mgPerMl": 25
+      },
+      {
+        "display": "160mg/5ml",
+        "mgPerMl": 32
+      },
+      {
+        "display": "250mg/5ml",
+        "mgPerMl": 50
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "10-15 mg/kg/dose",
+        "min": 10,
+        "max": 15,
+        "unit": "mg/dose"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "??? 4-6 ???????",
+        "dosesPerDay": 1,
+        "text": "(??????? 5 ?????/???)",
+        "frequencyText": "??? 4-6 ???????"
+      }
+    ]
+  },
+  {
+    "name": "Amoxicillin",
+    "initialConcentration": 50,
+    "initialDosageOption": {
+      "display": "40-50 mg/kg/day",
+      "min": 40,
+      "max": 50,
+      "unit": "mg/day"
+    },
+    "initialFrequencyOption": {
+      "display": "????? 2 ?????",
+      "dosesPerDay": 2,
+      "text": "(????-????)",
+      "frequencyText": "????? 2 ?????"
+    },
+    "concentrations": [
+      {
+        "display": "250mg/5ml",
+        "mgPerMl": 50
+      },
+      {
+        "display": "125mg/5ml",
+        "mgPerMl": 25
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "40-50 mg/kg/day",
+        "min": 40,
+        "max": 50,
+        "unit": "mg/day"
+      },
+      {
+        "display": "80-90 mg/kg/day",
+        "min": 80,
+        "max": 90,
+        "unit": "mg/day"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "????? 2 ?????",
+        "dosesPerDay": 2,
+        "text": "(????-????)",
+        "frequencyText": "????? 2 ?????"
+      },
+      {
+        "display": "????? 3 ?????",
+        "dosesPerDay": 3,
+        "text": "(????-???????-????)",
+        "frequencyText": "????? 3 ?????"
+      },
+      {
+        "display": "??????????",
+        "dosesPerDay": 1,
+        "text": "(??????????)",
+        "frequencyText": "??????????"
+      }
+    ]
+  },
+  {
+    "name": "Ibuprofen",
+    "initialConcentration": 20,
+    "initialDosageOption": {
+      "display": "5-10 mg/kg/dose",
+      "min": 5,
+      "max": 10,
+      "unit": "mg/dose"
+    },
+    "initialFrequencyOption": {
+      "display": "??? 6-8 ???????",
+      "dosesPerDay": 1,
+      "text": "(??????? 4 ?????/???)",
+      "frequencyText": "??? 6-8 ???????"
+    },
+    "concentrations": [
+      {
+        "display": "100mg/5ml",
+        "mgPerMl": 20
+      },
+      {
+        "display": "200mg/5ml",
+        "mgPerMl": 40
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "5-10 mg/kg/dose",
+        "min": 5,
+        "max": 10,
+        "unit": "mg/dose"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "??? 6-8 ???????",
+        "dosesPerDay": 1,
+        "text": "(??????? 4 ?????/???)",
+        "frequencyText": "??? 6-8 ???????"
+      }
+    ]
+  }
+]
