@@ -15,9 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const DRUG_DATA_JSON_URL = 'https://RaphiphatSuphakosol.github.io/Pharmatools/assets/drug-data.json';
     // =====================================================================
 
-    // ลบส่วนที่เกี่ยวกับ localStorage และ UPDATE_INTERVAL_MS ออก เพราะเราจะไม่ใช้ localStorage สำหรับการแคชอีกแล้ว
-    // const UPDATE_INTERVAL_MS = 1000 * 60 * 60 * 24 * 30; // 30 วัน ในหน่วยมิลลิวินาที
-
     let allDrugs = []; // เปลี่ยนเป็น array ว่างเปล่า เพื่อรอโหลดข้อมูลจาก JSON
     let displayDrugs = []; // Array ที่เก็บยาที่แสดงในตาราง
     let editModeEnabled = false; // ตัวแปรควบคุมโหมดการแก้ไข/ลบ (ตอนนี้ควบคุมการแสดง/ซ่อน tag และ logic การคืนค่าเริ่มต้น)
@@ -56,7 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (ml % ML_PER_TABLESPOON === 0 && ml > 0) {
             return `${ml / ML_PER_TABLESPOON} ช้อนโต๊ะ`;
         }
-        if (ml % ML_TEASPOON === 0 && ml > 0 && ml < ML_PER_TABLESPOON) {
+        // แก้ไข: ML_TEASPOON เป็น ML_PER_TEASPOON
+        if (ml % ML_PER_TEASPOON === 0 && ml > 0 && ml < ML_PER_TABLESPOON) {
             return `${ml / ML_PER_TEASPOON} ช้อนชา`;
         }
         if (tbsp > 0 && (tbsp % 1 === 0 || tbsp % 0.5 === 0)) {
