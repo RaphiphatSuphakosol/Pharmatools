@@ -593,9 +593,6 @@ section.forms .container-fluid {
 input[type="radio"] + label:before {
     border-radius: 0px;
 }
-
-
-
 /* Buttons */
 section.buttons {
     margin-top: 90px;
@@ -1287,4 +1284,3 @@ section.buttons .container-fluid {
     margin-top: 0;
     padding-top: 0;
 }
-

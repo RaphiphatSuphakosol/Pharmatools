@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="th">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="เครื่องมือคำนวณทางการแพทย์และเภสัชกรรมสำหรับบุคลากรทางการแพทย์">
+    <meta name="author" content="เภสัชกร ระพีพัฒน์ ศุภโกศล">
+    <title>Pharma Tools</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEbFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/templatemo-style.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/warfarin-calculator.css">
+    <link rel="stylesheet" href="assets/css/bwandcrclcalculator-styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/pediatric-dosage.css">
+
+    <style>
+        .drug-tags-container {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px; /* ระยะห่างระหว่างแท็ก */
+        }
+        .drug-tag {
+            display: inline-flex; /* ให้อุปกรณ์ในแท็กอยู่บรรทัดเดียวกัน */
+            align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+            background-color: #e0e0e0;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+        .drug-tag .remove-tag-btn {
+            margin-left: 8px;
+            background: none;
+            border: none;
+            color: #777;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0;
+            font-size: 1.1em;
+            line-height: 1; /* จัดตำแหน่งให้ตรงกลาง */
+            display: flex;
+            align-items: center;
+        }
+        .drug-tag .remove-tag-btn:hover {
+            color: #d9534f; /* สีแดงเมื่อโฮเวอร์ */
+        }
+    </style>
+
+  </head>
+
+<body class="is-preload">
+    <div id="wrapper">
+      <div id="main">
+          <div class="inner">
+            <header id="header">
+              <div class="logo">
+                <a href="BodyWeight_Calculator.html">PharmaTools</a>
+              </div>
+            </header>
+
+            <section id="pediatric-dosage-calculator" class="tables">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-heading">
+                                <h2>โปรแกรมคำนวณขนาดยาน้ำสำหรับเด็ก</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-12"> <div class="calculator-card">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form id="pediatric-weight-form">
+                                            <div class="form-group">
+                                                <label for="child-weight">น้ำหนักตัวเด็ก:</label>
+                                                <div class="input-group">
+                                                    <input type="number" id="child-weight" class="form-control form-control-sm" placeholder="เช่น 15.0" step="0.1" required>
+                                                    <div class="input-group-append">
+                                                        <select id="weight-unit" class="form-control form-control-sm" required>
+                                                            <option value="kg">kg</option>
+                                                            <option value="lbs">lbs</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-12">
+                                        <label for="drug-search-select">ค้นหาและเพิ่มยา:</label>
+                                        <select id="drug-search-select" class="form-control" style="width: 100%;">
+                                            <option value="">พิมพ์ชื่อยาเพื่อค้นหา...</option>
+                                        </select>
+                                        <div id="drug-tags-container" class="drug-tags-container">
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center mb-3">รายการยาและขนาดยาที่แนะนำ</h3>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped pediatric-drug-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ชื่อยา</th>
+                                                        <th>ความเข้มข้นยา</th>
+                                                        <th>ขนาดยาแนะนำ (MG/KG/DOSE)</th>
+                                                        <th>วิธีการบริหาร</th>
+                                                        <th>ขนาดยา (MG/DOSE)</th>
+                                                        <th>ปริมาตรยาที่แนะนำ (ML/DAY)</th>
+                                                        <th>สรุปวิธีการรับประทาน</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody id="drug-list-body">
+                                                    </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="notes mt-4">
+                                            <p>
+                                                <strong>หมายเหตุ:</strong> <br>
+                                                - ปริมาตรยาที่แสดงเป็นการประมาณค่า โดยคำนวณจากน้ำหนักที่ระบุ.
+                                                - ข้อมูลนี้ใช้สำหรับการอ้างอิงเท่านั้น และไม่สามารถใช้ทดแทนคำแนะนำจากแพทย์หรือเภสัชกรได้
+                                                ควรปรึกษาบุคลากรทางการแพทย์เพื่อยืนยันขนาดยาที่เหมาะสม.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </div>
+      </div>
+          <div id="sidebar">
+              <div class="inner">
+                <section id="search" class="alt" style="text-align: center;">
+                   <a href="BodyWeight_Calculator.html">
+                   <img src="image/logo.png" alt="Search" class="search-icon" />
+                   </a>
+                </section>
+                <nav id="menu">
+                  <ul>
+                    <li><a href="BodyWeight_Calculator.html">หน้าหลัก</a></li>
+                    <li><a href="BodyWeight_Calculator.html?_ijt=mjtoitju1eg9u254rmlpl5fm7e&_ij_reload=RELOAD_ON_SAVE#ibw-abw-calculator">โปรแกรมคำนวณน้ำหนักทางคลินิก</a></li>
+                    <li><a href="BodyWeight_Calculator.html?_ijt=mjtoitju1eg9u254rmlpl5fm7e&_ij_reload=RELOAD_ON_SAVE#crcl-calculator">โปรแกรมคำนวณ CrCl</a></li>
+                    <li>
+                    <span class="opener">โปรแกรม Warfarin</span>
+                      <ul>
+                        <li><a href="Warfarin_Calculator.html">คำนวณขนาดยา Warfarin</a></li>
+                        <li><a href="Warfarin_Calculator.html">เช็ครายการ Drug interaction Warfarin</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="Warfarin_Calculator.html">โปรแกรมคำนวณขนาดยาฉีด</a></li>
+                    <li><a href="pediatric-dosage.html">โปรแกรมคำนวณขนาดยาน้ำสำหรับเด็กเล็ก</a></li>
+                    <li><a href="Warfarin_Calculator.html">โปรแกรมคำนวณขนาดยาสำหรับเด็กโต</a></li>
+                    <li><a href="Warfarin_Calculator.html">ยาที่ห้ามใช้ในหญิงตั้งครรภ์และให้นมบุตร</a></li>
+                    <li><a href="Warfarin_Calculator.html">ยาและอาหารที่ห้ามรับประทานในผู้ป่วย G6PD</a></li>
+                  </ul>
+                </nav>
+                <footer id="footer">
+                  <p class="copyright" >จัดทำโดย นส.ภ. ระพีพัฒน์ ศุภโกศล <br>คณะเภสัชศาสตร์ มหาวิทยาลัยมหาสารคาม
+                  <br>ช่องทางติดต่อ <a rel="nofollow" href="https://www.facebook.com/raphiphat.suphakosol">Facebook</a></p>
+                </footer>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/transition.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/bwandcrclcalculator.js"></script>
+    <script src="assets/js/pediatric-dosage.js"></script>
+</body>
+</html>
