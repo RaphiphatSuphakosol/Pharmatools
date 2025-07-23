@@ -129,6 +129,8 @@
     width: 100%;
     margin-bottom: 0;
     border-collapse: collapse;
+    /* เพิ่ม: กำหนดให้ layout ของตารางเป็น fixed เพื่อควบคุมความกว้างคอลัมน์ได้ดีขึ้น */
+    table-layout: fixed;
 }
 
 .pediatric-drug-table th,
@@ -139,7 +141,11 @@
     border: 1px solid #eee;
     font-size: 14px;
     color: #333;
-    word-wrap: break-word;
+    word-wrap: break-word; /* ให้ข้อความตัดบรรทัดได้ */
+    /* เพิ่ม: กำหนด overflow: hidden เพื่อซ่อนเนื้อหาที่ล้นในเซลล์ */
+    overflow: hidden;
+    /* เพิ่ม: กำหนด text-overflow: ellipsis เพื่อแสดง ... เมื่อข้อความถูกซ่อน */
+    text-overflow: ellipsis;
 }
 
 .pediatric-drug-table thead th {
@@ -147,7 +153,8 @@
     font-weight: 700;
     color: #555;
     text-transform: uppercase;
-    white-space: nowrap; /* ป้องกันไม่ให้หัวตารางขึ้นบรรทัดใหม่ */
+    /* ลบ: white-space: nowrap; ออก เพื่อให้หัวตารางสามารถตัดบรรทัดได้ */
+    /* white-space: nowrap; */ /* <-- ลบบรรทัดนี้ออก */
 }
 
 .pediatric-drug-table tbody tr:nth-child(even) {
@@ -354,5 +361,4 @@
 .drug-tag .remove-tag-btn img { /* สไตล์สำหรับรูปภาพภายในปุ่ม */
     display: block; /* ทำให้รูปภาพเป็น block เพื่อควบคุมขนาดได้ง่าย */
 }
-/* END NEW DRUG TAG STYLES */
 /* END NEW DRUG TAG STYLES */
