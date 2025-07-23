@@ -10,10 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const ML_PER_TABLESPOON = 15; // 1 ช้อนโต๊ะ = 15 mL
 
     // =====================================================================
-    // *** จุดสำคัญที่เปลี่ยน: URL สำหรับดึงข้อมูลยาจาก Google Drive ***
-    // แทนที่ด้วย URL ของคุณที่ได้จาก Apps Script
+    // URL สำหรับดึงข้อมูลยาจาก Google Drive Web App (ใช้ URL ของคุณ)
     const DRUG_DATA_JSON_URL = 'https://script.google.com/macros/s/AKfycbwSyjJpBrujLw6ELzO3JO76EtI5nbuASzt96Kzg34Y_txV5_dn1ORm2D4cCjvIdusi93w/exec';
     // =====================================================================
+
+    // *** เพิ่มส่วนนี้เข้ามาสำหรับการอัปเดตทุก 1 เดือน ***
+    const UPDATE_INTERVAL_MS = 1000 * 60 * 60 * 24 * 30; // 30 วัน ในหน่วยมิลลิวินาที
 
     let allDrugs = []; // เปลี่ยนเป็น array ว่างเปล่า เพื่อรอโหลดข้อมูลจาก JSON
     let displayDrugs = []; // Array ที่เก็บยาที่แสดงในตาราง
@@ -328,73 +330,102 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ฟังก์ชันสำหรับโหลดข้อมูลยาจาก JSON
+    // ฟังก์ชันสำหรับโหลดข้อมูลยาจาก JSON (มีการปรับปรุงเพื่อใช้ localStorage)
     async function loadDrugData() {
+        const cachedData = localStorage.getItem('drugData');
+        const lastUpdated = localStorage.getItem('drugDataLastUpdated');
+        const currentTime = new Date().getTime();
+
+        // *** ตรวจสอบว่ามีข้อมูลใน localStorage และยังไม่เกิน 1 เดือน ***
+        if (cachedData && lastUpdated && (currentTime - parseInt(lastUpdated) < UPDATE_INTERVAL_MS)) {
+            try {
+                allDrugs = JSON.parse(cachedData);
+                console.log('ข้อมูลยาโหลดจาก Local Storage แล้ว.');
+                initializeDrugSearchAndDisplay(); // เรียกใช้ฟังก์ชัน initialization
+                return; // ออกจากฟังก์ชัน ไม่ต้องดึงข้อมูลจาก Web App
+            } catch (e) {
+                console.error('เกิดข้อผิดพลาดในการ parse ข้อมูลจาก Local Storage:', e);
+                // ถ้า parse ไม่ได้ ให้ดึงข้อมูลใหม่
+            }
+        }
+
+        // ถ้าไม่มีข้อมูลใน localStorage หรือข้อมูลเก่าเกิน 1 เดือน ให้ดึงจาก Web App
+        console.log('ข้อมูลยาไม่มีใน Local Storage หรือเก่าเกินไป กำลังดึงจาก Web App...');
         try {
             const response = await fetch(DRUG_DATA_JSON_URL);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const data = await response.json();
-            allDrugs = data; // กำหนดค่า allDrugs ด้วยข้อมูลที่โหลดมา
+            allDrugs = await response.json();
 
-            // Initialize Select2 for the drug search dropdown AFTER data is loaded
-            if (typeof jQuery !== 'undefined' && typeof jQuery.fn.select2 !== 'undefined') {
-                $(drugSearchSelect).select2({
-                    placeholder: "พิมพ์ชื่อยาเพื่อค้นหา...",
-                    allowClear: true,
-                    data: allDrugs.map(drug => ({ id: drug.name, text: drug.name })),
-                    templateResult: function(data) {
-                        if (!data.id) { return data.text; }
-                        return $('<span>' + data.text + '</span>');
-                    },
-                    templateSelection: function(data) {
-                        return data.text;
+            // บันทึกข้อมูลและ timestamp ลงใน Local Storage
+            localStorage.setItem('drugData', JSON.stringify(allDrugs));
+            localStorage.setItem('drugDataLastUpdated', currentTime.toString());
+            console.log('ข้อมูลยาโหลดจาก Web App และบันทึกลง Local Storage แล้ว.');
+
+            initializeDrugSearchAndDisplay(); // เรียกใช้ฟังก์ชัน initialization
+        } catch (error) {
+            console.error('ไม่สามารถโหลดข้อมูลยาได้:', error);
+            alert('ไม่สามารถโหลดข้อมูลยาได้ กรุณาลองใหม่อีกครั้ง หรือติดต่อผู้ดูแลระบบ');
+        }
+    }
+
+    // ฟังก์ชันใหม่สำหรับจัดการการเริ่มต้น Select2 และการแสดงผลครั้งแรก
+    function initializeDrugSearchAndDisplay() {
+        // Initialize Select2 for the drug search dropdown AFTER data is loaded
+        if (typeof jQuery !== 'undefined' && typeof jQuery.fn.select2 !== 'undefined') {
+            $(drugSearchSelect).select2({
+                placeholder: "พิมพ์ชื่อยาเพื่อค้นหา...",
+                allowClear: true,
+                data: allDrugs.map(drug => ({ id: drug.name, text: drug.name })),
+                templateResult: function(data) {
+                    if (!data.id) { return data.text; }
+                    return $('<span>' + data.text + '</span>');
+                },
+                templateSelection: function(data) {
+                    return data.text;
+                }
+            });
+
+            // Event listener เมื่อมีการเลือกยาจากช่องค้นหา
+            $(drugSearchSelect).off('select2:select').on('select2:select', function(e) { // ใช้ off/on เพื่อป้องกันการผูกซ้ำ
+                const selectedDrugName = e.params.data.id;
+                const drugToAdd = allDrugs.find(d => d.name === selectedDrugName);
+
+                if (drugToAdd) {
+                    // ถ้าเป็นการค้นหาครั้งแรก ให้เคลียร์ displayDrugs ก่อน
+                    if (!firstSearchDone) {
+                        displayDrugs = []; // เคลียร์ array
+                        firstSearchDone = true; // ตั้งค่าสถานะว่ามีการค้นหาครั้งแรกแล้ว
                     }
-                });
 
-                // Event listener เมื่อมีการเลือกยาจากช่องค้นหา
-                $(drugSearchSelect).on('select2:select', function(e) {
-                    const selectedDrugName = e.params.data.id;
-                    const drugToAdd = allDrugs.find(d => d.name === selectedDrugName);
-
-                    if (drugToAdd) {
-                        // ถ้าเป็นการค้นหาครั้งแรก ให้เคลียร์ displayDrugs ก่อน
-                        if (!firstSearchDone) {
-                            displayDrugs = []; // เคลียร์ array
-                            firstSearchDone = true; // ตั้งค่าสถานะว่ามีการค้นหาครั้งแรกแล้ว
-                        }
-
-                        // ตรวจสอบว่ายาถูกเพิ่มใน displayDrugs แล้วหรือยัง
-                        const isAlreadyDisplayed = displayDrugs.some(d => d.name === drugToAdd.name);
-                        if (!isAlreadyDisplayed) {
-                            displayDrugs.push(createDrugInstance(drugToAdd)); // เพิ่มยาที่เลือกเข้าสู่ displayDrugs
-                        }
-
-                        // เปิดใช้งานโหมดแก้ไข/ลบ
-                        editModeEnabled = true;
-                        renderDrugTags(); // อัปเดต Tags หลังจากเพิ่มยา
-                        renderDrugList(); // อัปเดตตาราง
+                    // ตรวจสอบว่ายาถูกเพิ่มใน displayDrugs แล้วหรือยัง
+                    const isAlreadyDisplayed = displayDrugs.some(d => d.name === drugToAdd.name);
+                    if (!isAlreadyDisplayed) {
+                        displayDrugs.push(createDrugInstance(drugToAdd)); // เพิ่มยาที่เลือกเข้าสู่ displayDrugs
                     }
-                    $(this).val(null).trigger('change'); // ล้างค่าใน Select2 search box
-                });
-            } else {
-                console.warn("jQuery or Select2 not loaded for search dropdown.");
-            }
 
-            // Initial load: เติม displayDrugs ด้วย allDrugs ทั้งหมดหลังจากโหลดข้อมูลแล้ว
-            // และเรียก render ต่างๆ ครั้งแรก
+                    // เปิดใช้งานโหมดแก้ไข/ลบ
+                    editModeEnabled = true;
+                    renderDrugTags(); // อัปเดต Tags หลังจากเพิ่มยา
+                    renderDrugList(); // อัปเดตตาราง
+                }
+                $(this).val(null).trigger('change'); // ล้างค่าใน Select2 search box
+            });
+        } else {
+            console.warn("jQuery or Select2 not loaded for search dropdown.");
+        }
+
+        // Initial load: เติม displayDrugs ด้วย allDrugs ทั้งหมดหลังจากโหลดข้อมูลแล้ว
+        // และเรียก render ต่างๆ ครั้งแรก
+        // เฉพาะกรณีที่ displayDrugs ยังว่างเปล่าเมื่อโหลดครั้งแรก หรือเมื่อมีการเปลี่ยนชุดข้อมูล allDrugs
+        if (displayDrugs.length === 0 || !firstSearchDone) {
             allDrugs.forEach(drugTemplate => {
                 displayDrugs.push(createDrugInstance(drugTemplate));
             });
-            renderDrugList(); // แสดงตารางยาเริ่มต้น
-            renderDrugTags(); // แสดง tags (ในกรณีนี้จะไม่มีอะไรแสดงเพราะ editModeEnabled เป็น false)
-
-        } catch (error) {
-            console.error('Error loading drug data:', error);
-            // แสดงข้อความแจ้งเตือนผู้ใช้หากโหลดข้อมูลไม่สำเร็จ
-            alert("ไม่สามารถโหลดข้อมูลยาได้ กรุณาลองใหม่อีกครั้ง หรือติดต่อผู้ดูแลระบบ");
         }
+        renderDrugList(); // แสดงตารางยาเริ่มต้น
+        renderDrugTags(); // แสดง tags (ในกรณีนี้จะไม่มีอะไรแสดงเพราะ editModeEnabled เป็น false ในตอนเริ่มต้น)
     }
 
 
@@ -403,7 +434,7 @@ document.addEventListener('DOMContentLoaded', function() {
     weightUnitSelect.addEventListener('change', renderDrugList);
 
     // =====================================================================
-    // *** เปลี่ยนการเริ่มต้น: เรียก loadDrugData() แทนการกำหนด allDrugs โดยตรง ***
+    // เรียก loadDrugData() เมื่อ DOM โหลดเสร็จ
     loadDrugData();
     // =====================================================================
 });
