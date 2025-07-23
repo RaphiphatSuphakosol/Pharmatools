@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // =====================================================================
     // URL สำหรับดึงข้อมูลยาจาก Google Drive Web App (ใช้ URL ของคุณ)
-    const DRUG_DATA_JSON_URL = 'https://script.google.com/macros/s/AKfycbwSyjJpBrujLw6ELzO3JO76EtI5nbuASzt96Kzg34Y_txV5_dn1ORm2D4cCjvIdusi93w/exec';
+    const DRUG_DATA_JSON_URL = 'https://RaphiphatSuphakosol.github.io/Pharmatools/assets/drug-data.json';
     // =====================================================================
 
     // *** เพิ่มส่วนนี้เข้ามาสำหรับการอัปเดตทุก 1 เดือน ***
