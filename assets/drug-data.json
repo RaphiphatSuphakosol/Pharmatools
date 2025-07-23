@@ -9,10 +9,10 @@
       "unit": "mg/dose"
     },
     "initialFrequencyOption": {
-      "display": "??? 4-6 ???????",
+      "display": "ทุก 4-6 ชั่วโมง",
       "dosesPerDay": 1,
-      "text": "(??????? 5 ?????/???)",
-      "frequencyText": "??? 4-6 ???????"
+      "text": "(ไม่เกิน 5 ครั้ง/วัน)",
+      "frequencyText": "ทุก 4-6 ชั่วโมง"
     },
     "concentrations": [
       {
@@ -50,10 +50,10 @@
     ],
     "frequencyOptions": [
       {
-        "display": "??? 4-6 ???????",
+        "display": "ทุก 4-6 ชั่วโมง",
         "dosesPerDay": 1,
-        "text": "(??????? 5 ?????/???)",
-        "frequencyText": "??? 4-6 ???????"
+        "text": "(ไม่เกิน 5 ครั้ง/วัน)",
+        "frequencyText": "ทุก 4-6 ชั่วโมง"
       }
     ]
   },
@@ -67,10 +67,10 @@
       "unit": "mg/day"
     },
     "initialFrequencyOption": {
-      "display": "????? 2 ?????",
+      "display": "วันละ 2 ครั้ง",
       "dosesPerDay": 2,
-      "text": "(????-????)",
-      "frequencyText": "????? 2 ?????"
+      "text": "(เช้า-เย็น)",
+      "frequencyText": "วันละ 2 ครั้ง"
     },
     "concentrations": [
       {
@@ -98,22 +98,22 @@
     ],
     "frequencyOptions": [
       {
-        "display": "????? 2 ?????",
+        "display": "วันละ 2 ครั้ง",
         "dosesPerDay": 2,
-        "text": "(????-????)",
-        "frequencyText": "????? 2 ?????"
+        "text": "(เช้า-เย็น)",
+        "frequencyText": "วันละ 2 ครั้ง"
       },
       {
-        "display": "????? 3 ?????",
+        "display": "วันละ 3 ครั้ง",
         "dosesPerDay": 3,
-        "text": "(????-???????-????)",
-        "frequencyText": "????? 3 ?????"
+        "text": "(เช้า-กลางวัน-เย็น)",
+        "frequencyText": "วันละ 3 ครั้ง"
       },
       {
-        "display": "??????????",
+        "display": "วันละครั้ง",
         "dosesPerDay": 1,
-        "text": "(??????????)",
-        "frequencyText": "??????????"
+        "text": "(วันละครั้ง)",
+        "frequencyText": "วันละครั้ง"
       }
     ]
   },
@@ -127,10 +127,10 @@
       "unit": "mg/dose"
     },
     "initialFrequencyOption": {
-      "display": "??? 6-8 ???????",
+      "display": "ทุก 6-8 ชั่วโมง",
       "dosesPerDay": 1,
-      "text": "(??????? 4 ?????/???)",
-      "frequencyText": "??? 6-8 ???????"
+      "text": "(ไม่เกิน 4 ครั้ง/วัน)",
+      "frequencyText": "ทุก 6-8 ชั่วโมง"
     },
     "concentrations": [
       {
@@ -152,10 +152,10 @@
     ],
     "frequencyOptions": [
       {
-        "display": "??? 6-8 ???????",
+        "display": "ทุก 6-8 ชั่วโมง",
         "dosesPerDay": 1,
-        "text": "(??????? 4 ?????/???)",
-        "frequencyText": "??? 6-8 ???????"
+        "text": "(ไม่เกิน 4 ครั้ง/วัน)",
+        "frequencyText": "ทุก 6-8 ชั่วโมง"
       }
     ]
   }
