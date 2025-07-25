@@ -39,10 +39,34 @@
         "defaultVolumeMl": 60
       }
     ],
-    "dosageOptions": [],
-    "frequencyOptions": [],
-    "initialDosageOption": null,
-    "initialFrequencyOption": null
+    "dosageOptions": [
+      {
+        "display": "10-15 mg/kg/dose",
+        "min": 10,
+        "max": 15,
+        "unit": "mg/dose"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "ทุก 4-6 ชั่วโมง",
+        "dosesPerDay": 4,
+        "text": "(ไม่เกิน 5 ครั้ง/วัน)",
+        "frequencyText": "ทุก 4-6 ชม. เมื่อมีไข้"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "10-15 mg/kg/dose",
+      "min": 10,
+      "max": 15,
+      "unit": "mg/dose"
+    },
+    "initialFrequencyOption": {
+      "display": "ทุก 4-6 ชั่วโมง",
+      "dosesPerDay": 4,
+      "text": "(ไม่เกิน 5 ครั้ง/วัน)",
+      "frequencyText": "ทุก 4-6 ชม. เมื่อมีไข้"
+    }
   },
   {
     "name": "Amoxicillin",
@@ -65,10 +89,52 @@
         "defaultVolumeMl": 60
       }
     ],
-    "dosageOptions": [],
-    "frequencyOptions": [],
-    "initialDosageOption": null,
-    "initialFrequencyOption": null
+    "dosageOptions": [
+      {
+        "display": "40-50 mg/kg/day",
+        "min": 40,
+        "max": 50,
+        "unit": "mg/day"
+      },
+      {
+        "display": "80-90 mg/kg/day",
+        "min": 80,
+        "max": 90,
+        "unit": "mg/day"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "วันละ 2 ครั้ง",
+        "dosesPerDay": 2,
+        "text": "(เช้า-เย็น)",
+        "frequencyText": "วันละ 2 ครั้ง"
+      },
+      {
+        "display": "วันละ 3 ครั้ง",
+        "dosesPerDay": 3,
+        "text": "(เช้า-กลางวัน-เย็น)",
+        "frequencyText": "วันละ 3 ครั้ง"
+      },
+      {
+        "display": "วันละครั้ง",
+        "dosesPerDay": 1,
+        "text": "(วันละครั้ง)",
+        "frequencyText": "วันละครั้ง"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "40-50 mg/kg/day",
+      "min": 40,
+      "max": 50,
+      "unit": "mg/day"
+    },
+    "initialFrequencyOption": {
+      "display": "วันละ 2 ครั้ง",
+      "dosesPerDay": 2,
+      "text": "(เช้า-เย็น)",
+      "frequencyText": "วันละ 2 ครั้ง"
+    }
   },
   {
     "name": "Ibuprofen",
@@ -88,10 +154,34 @@
         "defaultVolumeMl": 60
       }
     ],
-    "dosageOptions": [],
-    "frequencyOptions": [],
-    "initialDosageOption": null,
-    "initialFrequencyOption": null
+    "dosageOptions": [
+      {
+        "display": "5-10 mg/kg/dose",
+        "min": 5,
+        "max": 10,
+        "unit": "mg/dose"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "ทุก 6-8 ชั่วโมง",
+        "dosesPerDay": 3,
+        "text": "(ไม่เกิน 4 ครั้ง/วัน)",
+        "frequencyText": "ทุก 6-8 ชม. เมื่อมีไข้/ปวด"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "5-10 mg/kg/dose",
+      "min": 5,
+      "max": 10,
+      "unit": "mg/dose"
+    },
+    "initialFrequencyOption": {
+      "display": "ทุก 6-8 ชั่วโมง",
+      "dosesPerDay": 3,
+      "text": "(ไม่เกิน 4 ครั้ง/วัน)",
+      "frequencyText": "ทุก 6-8 ชม. เมื่อมีไข้/ปวด"
+    }
   },
   {
     "name": "Salbutamol",
@@ -106,9 +196,33 @@
         "defaultVolumeMl": 60
       }
     ],
-    "dosageOptions": [],
-    "frequencyOptions": [],
-    "initialDosageOption": null,
-    "initialFrequencyOption": null
+    "dosageOptions": [
+      {
+        "display": "0.1-0.2 mg/kg/dose",
+        "min": 0.1,
+        "max": 0.2,
+        "unit": "mg/dose"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "ทุก 6-8 ชั่วโมง",
+        "dosesPerDay": 3,
+        "text": "",
+        "frequencyText": "ทุก 6-8 ชม."
+      }
+    ],
+    "initialDosageOption": {
+      "display": "0.1-0.2 mg/kg/dose",
+      "min": 0.1,
+      "max": 0.2,
+      "unit": "mg/dose"
+    },
+    "initialFrequencyOption": {
+      "display": "ทุก 6-8 ชั่วโมง",
+      "dosesPerDay": 3,
+      "text": "",
+      "frequencyText": "ทุก 6-8 ชม."
+    }
   }
 ]
