@@ -283,6 +283,14 @@ document.addEventListener('DOMContentLoaded', function() {
             $(this).val(null).trigger('change');
         });
 
+        // Add event listener for when the dropdown is closed
+        // This can help re-focus or prevent issues if Select2 doesn't clean up properly
+        drugSearchInput.on('select2:close', function() {
+            // Optional: Re-focus the input if needed, but often not necessary
+            // $(this).focus();
+        });
+
+
         selectedDrugTagsContainer.addEventListener('click', function(event) {
             const button = event.target.closest('.remove-tag-btn');
             if (button) {
@@ -340,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data: uniqueSortedDrugDataForSelect2,
             theme: "default",
             width: '100%',
-            dropdownParent: $('.search-container')
+            dropdownParent: $('.search-container') // Ensure this parent is correct and stable
         });
 
         drugSearchInput.val(null).trigger('change');
@@ -613,6 +621,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Ensure the input is cleared when opening to prevent stale text
             $(this).val(null).trigger('change');
         });
+
+        // Add event listener for when the dropdown is closed
+        diseaseSearchInput.on('select2:close', function() {
+            // Optional: Re-focus the input if needed, but often not necessary
+            // $(this).focus();
+        });
+
 
         selectedDiseaseTagsContainer.addEventListener('click', function(event) {
             const button = event.target.closest('.remove-tag-btn');
