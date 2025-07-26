@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+    <title>Pharma Tools</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-style.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/preg-lactation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <style>
+      /* NEW CSS for references section */
+      .references-section {
+          margin-top: 40px;
+          padding: 20px;
+          border-top: 1px solid #eee;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+      }
+
+      .references-section h3 {
+          color: #333;
+          margin-bottom: 15px;
+      }
+
+      .references-section ol {
+          list-style-type: decimal;
+          padding-left: 25px;
+      }
+
+      .references-section li {
+          margin-bottom: 8px;
+          line-height: 1.5;
+          color: #555;
+      }
+
+      sup a {
+          text-decoration: none;
+          color: #007bff; /* Link color for superscript numbers */
+          font-size: 0.7em; /* Smaller font size for superscript */
+          vertical-align: super; /* Position as superscript */
+          margin-left: 2px; /* Small space after the text */
+      }
+
+      sup a:hover {
+          text-decoration: underline;
+      }
+
+      /* Highlight row effect (from previous step) */
+      .highlight-row {
+          background-color: #ffff99 !important; /* A light yellow for highlighting */
+          transition: background-color 0.5s ease-in-out;
+      }
+    </style>
+  </head>
+
+<body class="is-preload">
+    <div id="wrapper">
+        <div id="main">
+          <div class="inner">
+            <header id="header">
+              <div class="logo">
+                <a href="index.html">PharmaTools</a>
+              </div>
+            </header>
+
+            <section class="tables">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="section-heading">
+                        <h2>ยาที่ห้ามใช้ในหญิงตั้งครรภ์และให้นมบุตร</h2>
+                      </div>
+
+                      <div class="search-container">
+                          <label for="drug-search-input">เพิ่มหรือค้นหายา:</label>
+                          <div class="search-input-wrapper">
+                              <select class="form-control" id="drug-search-input" style="width: 100%;"></select>
+                          </div>
+                          <div id="selected-drug-tags" class="selected-tags-container">
+                          </div>
+                      </div>
+                      <div class="default-table">
+                        <table id="restricted-drugs-table">
+                          <thead>
+                            <tr>
+                              <th data-sort-by="name" class="sortable">ชื่อรายการยา <span class="sort-icon"></span></th>
+                              <th data-sort-by="pregnancy" class="sortable">Preg Cat. <span class="sort-icon"></span></th>
+                              <th data-sort-by="pregnancyInfo" class="sortable">ข้อมูลการให้ยา<br>ในหญิงตั้งครรภ์ <span class="sort-icon"></span></th>
+                              <th data-sort-by="lactation" class="sortable">Lactation Cat. <span class="sort-icon"></span></th>
+                              <th data-sort-by="lactationInfo" class="sortable">ข้อมูลการให้ยา<br>ในหญิงให้นมบุตร <span class="sort-icon"></span></th>
+                            </tr>
+                          </thead>
+                          <tbody id="restricted-drugs-table-body">
+                            </tbody>
+                        </table>
+
+                        <div class="table-footer-controls">
+                            <div class="entries-per-page">
+                                <label for="entries-per-page">แสดง:</label>
+                                <select id="entries-per-page" class="form-control">
+                                    <option value="5" selected>5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="all">ทั้งหมด</option>
+                                </select>
+                                <span>รายการ</span>
+                            </div>
+                            <div class="pagination-info" id="pagination-info"></div>
+                            <ul class="pagination" id="pagination-controls">
+                                </ul>
+                        </div>
+                        <div id="drug-references-section" class="references-section">
+                            <h3>อ้างอิง</h3>
+                            <ol id="drug-references-list"></ol>
+                        </div>
+                        <div class="glossary-notes-container">
+                          <h3 class="toggle-glossary-btn">นิยามศัพท์ <i class="fas fa-chevron-down toggle-icon"></i></h3>
+                          <div class="glossary-content" style="display: none;">
+                              <ul>
+                                  <li>
+                                      <strong>Pregnancy Category:</strong>
+                                      <ul>
+                                          <li>A: จากการศึกษาไม่พบความเสี่ยงต่อทารกในครรภ์ทั้งในไตรมาส 1 และ 3 ยาที่จัดอยู่ในระดับนี้แทบไม่มีอันตรายต่อทารกในครรภ์</li>
+                                          <li>B: มี 2 ความหมาย คือ
+                                              <ol>
+                                                  <li>จากการศึกษาในสัตว์ทดลองในระยะสืบพันธุ์ไม่พบความเสี่ยงต่อตัวอ่อนแต่ยังไม่มีการศึกษาในหญิงมีครรภ์ หรือ</li>
+                                                  <li>จากการศึกษาในสัตว์ทดลองในระยะสืบพันธุ์พบผลข้างเคียง แต่ไม่ได้รับการยืนยันจากการศึกษาในหญิงมีครรภ์ในไตรมาส 1 และ 3</li>
+                                              </ol>
+                                          </li>
+                                          <li>C: มี 2 ความหมาย คือ
+                                              <ol>
+                                                  <li>จากการศึกษาในสัตว์ทดลองพบผลข้างเคียงต่อตัวอ่อน (เกิดวิรูป ตาย หรืออื่นๆ) แต่ยังไม่มีการศึกษาในสตรี หรือ</li>
+                                                  <li>ยังไม่มีการศึกษาทั้งในสตรีและสัตว์ทดลอง</li>
+                                              </ol>
+                                          </li>
+                                          <li>D: มีหลักฐานแสดงความเป็นไปได้ที่จะมีความเสี่ยงต่อทารกในครรภ์   แต่ประโยชน์ของยาที่ใช้ในหญิงมีครรภ์อาจจะยอมรับได้ทั้งๆ ที่มีความเสี่ยง (เช่น ยาที่ใช้ในภาวะที่อันตรายถึงชีวิต หรือโรคที่รุนแรงซึ่งยาที่ปลอดภัยกว่าไม่สามารถใช้ได้หรือใช้ไม่ได้ผล)</li>
+                                          <li>X: จากการศึกษาในสัตว์ทดลองหรือมนุษย์ พบความผิดปกติต่อตัวอ่อนในครรภ์ หรือมีหลักฐานถึงความเสี่ยงต่อตัวอ่อนในครรภ์จากประสบการณ์การใช้ยาในมนุษย์ หรือทั้งในสัตว์และมนุษย์ และความเสี่ยงของการใช้ยาในหญิงมีครรภ์มีมากกว่า (อย่างชัดเจน) เมื่อเทียบกับประโยชน์ที่อาจเกิดขึ้น ยาที่จัดอยู่ในระดับนี้ห้ามใช้ในสตรีที่มีครรภหรืออาจมีครรภ์</li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <strong>Lactation Category:</strong>
+                                      <ul>
+                                          <li>L1: มีความปลอดภัยมากที่สุด</li>
+                                          <li>L2: มีความปลอดภัยมาก</li>
+                                          <li>L3: มีความปลอดภัยปานกลาง</li>
+                                          <li>L4: อาจทำให้เกิดอันตรายได้</li>
+                                          <li>L5: ห้ามใช้โดยเด็ดขาด (contraindicated)</li>
+                                      </ul>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br> <br> <br>
+            </section>
+
+            <section class="treatment-guidelines-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-heading">
+                                <h2>คำแนะนำแนวทางการรักษาผู้ป่วยตั้งครรภ์และให้นมบุตร</h2>
+                            </div>
+
+                            <div class="search-container">
+                                <label for="disease-search-input">ค้นหารายการโรค</label>
+                                <div class="search-input-wrapper">
+                                    <select id="disease-search-input" class="form-control" style="width: 100%;">
+                                        <option value="">พิมพ์ชื่อโรคเพื่อค้นหา...</option>
+                                        </select>
+                                </div>
+                            </div>
+
+                            <div id="selected-disease-tags" class="selected-tags-container" style="display: none;">
+                                </div>
+
+                            <div class="default-table treatment-table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="sortable" data-sort-by="disease">
+                                                โรคและอาการ
+                                                <span class="sort-icon fas fa-sort"></span>
+                                            </th>
+                                            <th class="sortable" data-sort-by="pregnant-meds">
+                                                ยาที่สามารถเลือกใช้ได้ในสตรีตั้งครรภ์
+                                                <span class="sort-icon fas fa-sort"></span>
+                                            </th>
+                                            <th class="sortable" data-sort-by="lactating-meds">
+                                                ยาที่สามารถเลือกใช้ได้ในหญิงให้นมบุตร
+                                                <span class="sort-icon fas fa-sort"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        </tbody>
+                                </table>
+                            </div>
+
+                            <div class="table-footer-controls">
+                                <div class="entries-per-page">
+                                    แสดง
+                                    <select id="entries-per-page-guidelines">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                        <option value="all">ทั้งหมด</option>
+                                    </select>
+                                    รายการ
+                                </div>
+                                <div class="pagination-info" id="pagination-info-guidelines">
+                                    แสดง 1 ถึง 10 จากทั้งหมด 100 รายการ
+                                </div>
+                                <ul class="pagination" id="pagination-guidelines">
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </div>
+        </div>
+
+        <div id="sidebar">
+          <div class="inner">
+            <section id="search" class="alt" style="text-align: center;">
+               <a href="BodyWeight_Calculator.html">
+               <img src="image/logo.png" alt="Search" class="search-icon" />
+               </a>
+            </section>
+            <nav id="menu">
+              <ul>
+                <li><a href="BodyWeight_Calculator.html">หน้าหลัก</a></li>
+                <li><a href="BodyWeight_Calculator.html?_ijt=mjtoitju1eg9u254rmlpl5fm7e&_ij_reload=RELOAD_ON_SAVE#ibw-abw-calculator">โปรแกรมคำนวณน้ำหนักทางคลินิก</a></li>
+                <li><a href="BodyWeight_Calculator.html?_ijt=mjtoitju1eg9u254rmlpl5fm7e&_ij_reload=RELOAD_ON_SAVE#crcl-calculator">โปรแกรมคำนวณ CrCl</a></li>
+                <li>
+                <span class="opener">โปรแกรม Warfarin</span>
+                  <ul>
+                    <li><a href="Warfarin_Calculator.html">คำนวณขนาดยา Warfarin</a></li>
+                    <li><a href="Warfarin_Calculator.html">เช็ครายการ Drug interaction Warfarin</a></li>
+                  </ul>
+                </li>
+                <li><a href="Warfarin_Calculator.html">โปรแกรมคำนวณขนาดยาฉีด</a></li>
+                <li><a href="pediatric-dosage.html">โปรแกรมคำนวณขนาดยาน้ำสำหรับเด็กเล็ก</a></li>
+                <li><a href="Warfarin_Calculator.html">โปรแกรมคำนวณขนาดยาสำหรับเด็กโต</a></li>
+                <li><a href="preg-lactation.html">ยาที่ห้ามใช้ในหญิงตั้งครรภ์และให้นมบุตร</a></li>
+                <li><a href="Warfarin_Calculator.html">ยาและอาหารที่ห้ามรับประทานในผู้ป่วย G6PD</a></li>
+              </ul>
+            </nav>
+            <footer id="footer">
+              <p class="copyright" >จัดทำโดย นส.ภ. ระพีพัฒน์ ศุภโกศล <br>คณะเภสัชศาสตร์ มหาวิทยาลัยมหาสารคาม
+              <br>ช่องทางติดต่อ <a rel="nofollow" href="https://www.facebook.com/raphiphat.suphakosol">Facebook</a></p>
+            </footer>
+          </div>
+        </div>
+    </div>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/transition.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="assets/js/preg-lactation.js"></script>
+</body>
+</html>

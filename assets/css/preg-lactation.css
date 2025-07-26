@@ -1,0 +1,771 @@
+/* Custom styles for the Restricted Drugs Table and Search Functionality */
+
+/* --- General Form Controls Refinements (from pediatric-dosage.css) --- */
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    font-weight: 700;
+    color: #4a4a4a;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Apply general input styles to select, input type number */
+/* #drug-search-input is a select now, so these styles will apply */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 12px 15px;
+    height: 48px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.06);
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Roboto Slab', sans-serif;
+    outline: none; /* Ensure outline is handled by focus state */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    height: auto;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #535ba0;
+    box-shadow: 0 0 0 0.25rem rgba(83, 91, 160, 0.25);
+}
+
+.no-spin-buttons::-webkit-outer-spin-button,
+.no-spin-buttons::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.no-spin-buttons {
+    -moz-appearance: textfield;
+}
+
+/* --- Table Styles (Existing, with minor adjustments for consistency) --- */
+.default-table {
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: auto; /* Keep for desktop, will be overridden in media query for mobile */
+    border-radius: 8px; /* Added from pediatric-dosage table */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Added from pediatric-dosage table */
+    background-color: #f7f7f7; /* Keep this background for the container */
+    padding: 20px; /* ลด padding เพื่อให้ตารางชิดขอบมากขึ้น */
+}
+
+.default-table table {
+    width: 100%;
+    /* table-layout: fixed; */ /* ลบบรรทัดนี้ออกเพื่อให้คอลัมน์ปรับขนาดตามเนื้อหาได้ดีขึ้น */
+    border-collapse: collapse; /* Changed to collapse for cleaner borders */
+    border-spacing: 0; /* Added for border-collapse: separate */
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */ /* Removed as default-table has it */
+    background-color: #fff; /* Table background */
+}
+
+.default-table th,
+.default-table td {
+    border: 1px solid #dee2e6; /* Consistent border */
+    padding: 12px 15px;
+    vertical-align: top;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.default-table th {
+    background-color: #f0f2f5; /* Light grey background for header */
+    color: #333;
+    font-weight: 700;
+    white-space: normal;
+    font-size: 13px;
+    padding: 10px 15px;
+    text-align: center; /* หัวข้อตารางชิดกลาง (สำหรับ Desktop และ Mobile) */
+}
+
+/* กำหนดความกว้างเฉพาะคอลัมน์ (เปอร์เซ็นต์ของ width: 100% ของตาราง) */
+/* *** สำหรับตารางยาที่ห้ามใช้ในหญิงตั้งครรภ์และให้นมบุตร (default-table) *** */
+#restricted-drugs-table thead th:nth-child(1), /* ชื่อรายการยา */
+#restricted-drugs-table tbody td:nth-child(1) {
+    width: 20%;
+}
+
+#restricted-drugs-table thead th:nth-child(2), /* Preg Cat. */
+#restricted-drugs-table tbody td:nth-child(2) {
+    width: 10%;
+    text-align: center; /* สำหรับ Desktop, Pregnancy Category ชิดกลาง */
+}
+
+#restricted-drugs-table thead th:nth-child(3), /* ข้อมูลการให้ยาในหญิงตั้งครรภ์ */
+#restricted-drugs-table tbody td:nth-child(3) {
+    width: 30%;
+}
+
+#restricted-drugs-table thead th:nth-child(4), /* Lactation Cat. */
+#restricted-drugs-table tbody td:nth-child(4) {
+    width: 10%;
+    text-align: center; /* สำหรับ Desktop, Lactation Category ชิดกลาง */
+}
+
+#restricted-drugs-table thead th:nth-child(5), /* ข้อมูลการให้ยาในหญิงให้นมบุตร */
+#restricted-drugs-table tbody td:nth-child(5) {
+    width: 30%;
+}
+/* เนื้อหาในเซลล์ตาราง (td) ชิดซ้ายสำหรับ Desktop โดยทั่วไป */
+.default-table td {
+    text-align: left;
+}
+
+
+/* สลับสีพื้นหลังของแถว */
+.default-table tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
+}
+
+.default-table tbody tr:nth-child(even) {
+    background-color: #fdfdfe; /* Very light grey for even rows */
+}
+
+.default-table tbody tr:hover {
+    background-color: #f0f5fa; /* Hover effect */
+    transition: background-color 0.2s ease;
+}
+
+/* ปรับ Section Heading */
+.section-heading h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #31323a;
+    margin-bottom: 30px;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+/* --- Search Functionality Styles (Updated for full width and left alignment) --- */
+.search-container {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    position: relative;
+    max-width: 100%; /* Allow it to take full width of its parent (.col-md-12) */
+    margin-left: 0; /* Align to left */
+    margin-right: auto; /* Push to left */
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    background-color: #fff;
+}
+
+#drug-search-input {
+    display: none;
+}
+
+/* Select2 Custom Styling (Updated for reduced height) */
+.select2-container--default .select2-selection--single {
+    height: auto;
+    min-height: 40px; /* Reduced min-height */
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    font-size: 16px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.06);
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: normal;
+    padding-left: 15px;
+    color: #495057;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 38px; /* Adjusted to match new min-height of parent */
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    word-break: break-word;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+    width: 30px;
+    right: 5px;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: #888 transparent transparent transparent;
+    border-width: 6px 4px 0 4px;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #535ba0;
+    box-shadow: 0 0 0 0.25rem rgba(83, 91, 160, 0.25);
+}
+
+.select2-dropdown {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+    position: absolute !important;
+    z-index: 9999999 !important;
+    background-color: #fff;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 8px;
+    font-size: 16px;
+}
+
+.select2-container--default .select2-results__option {
+    padding: 10px 15px;
+    font-size: 15px;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.select2-container--default .select2-results__option--selected {
+    background-color: #e9ecef;
+}
+
+/* --- Styles for Selected Drug Tags (Updated from pediatric-dosage.css) --- */
+.selected-tags-container {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px;
+    min-height: 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #fcfcfc;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.selected-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e9f0f7; /* Light blue background */
+    color: #43628e; /* Darker blue text */
+    padding: 8px 15px;
+    border-radius: 25px; /* Fully rounded corners */
+    font-size: 14px;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08); /* Subtle shadow */
+    font-weight: 500;
+}
+
+.selected-tag span {
+    margin-right: 10px;
+}
+
+.selected-tag .remove-tag-btn { /* Changed from .remove-tag to .remove-tag-btn for consistency */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8c98a5; /* Greyish color for the X */
+    transition: color 0.2s ease, transform 0.2s ease; /* Added transform transition */
+    margin-left: 5px;
+}
+
+.selected-tag .remove-tag-btn:hover {
+    color: #dc3545; /* Red on hover */
+    transform: scale(1.1); /* Slight scale up on hover */
+}
+
+.selected-tag .remove-tag-btn img {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+/* --- Pagination & Table Controls Styles --- */
+.table-footer-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 10px; /* Space between items */
+}
+
+.entries-per-page {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.entries-per-page select {
+    width: 80px; /* Adjust width as needed */
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: auto; /* Allow select to adjust height */
+    box-shadow: none; /* Remove default shadow */
+    font-size: 14px;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    overflow: hidden; /* For rounded corners */
+}
+
+.pagination li {
+    margin: 0;
+}
+
+.pagination li a,
+.pagination li span {
+    display: block;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #007bff;
+    background-color: #fff;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.pagination li:first-child a,
+.pagination li:first-child span {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination li:last-child a,
+.pagination li:last-child span {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.pagination li a:hover:not(.active) {
+    background-color: #f0f0f0;
+    color: #0056b3;
+}
+
+.pagination li.active a {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    cursor: default;
+}
+
+.pagination li.disabled span {
+    color: #6c757d;
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+.pagination-info {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    flex-grow: 1; /* Allow it to take available space */
+}
+
+/* --- Updated Styles for Table Sorting --- */
+.sortable {
+    cursor: pointer;
+    position: relative;
+    /* เพิ่ม padding-right ให้มีพื้นที่สำหรับไอคอนมากขึ้น */
+    padding-right: 30px; /* เดิม 25px */
+    user-select: none;
+    white-space: nowrap; /* Keep header text on one line */
+}
+
+.sort-icon {
+    position: absolute;
+    right: 8px; /* ตำแหน่งจากขอบขวาของ header */
+    top: 50%; /* จัดกึ่งกลางแนวตั้ง */
+    transform: translateY(-50%); /* ชดเชยการจัดกึ่งกลางแนวตั้ง */
+    font-size: 14px; /* ปรับขนาดให้ใหญ่ขึ้นเล็กน้อยเพื่อให้เห็นชัดเจน */
+    line-height: 1; /* Ensure icon is vertically centered */
+    transition: color 0.2s ease, transform 0.2s ease;
+    /* สีเริ่มต้นจะถูกกำหนดใน JS */
+}
+
+.sortable:hover .sort-icon {
+    color: #666 !important; /* เปลี่ยนสีบน hover ให้เข้มขึ้น */
+}
+
+/* Styles for active sort icon (จะใช้โดย JS ผ่าน data-sort-active) */
+.sortable[data-sort-active="true"] .sort-icon {
+    color: #333 !important; /* สีเข้มที่สุดสำหรับคอลัมน์ที่กำลังเรียง */
+}
+
+/* --- Styles for Glossary/Notes Section --- */
+.glossary-notes-container {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.glossary-notes-container h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #31323a;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.glossary-notes-container ul {
+    list-style: none; /* Remove default bullet points for the main ul */
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.glossary-notes-container ul li {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #555;
+    font-size: 15px;
+}
+
+.glossary-notes-container ul li strong {
+    color: #333;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.glossary-notes-container ul ul { /* Nested ul for categories (A, B, C, etc.) */
+    list-style: none; /* Remove bullets for this level too */
+    padding-left: 0; /* Remove default padding as we handle it on li below */
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.glossary-notes-container ul ul li {
+    font-size: 15px; /* Keep consistent with parent li for category text */
+    margin-bottom: 8px; /* Slightly more space between categories */
+    color: #555;
+    padding-left: 20px; /* Indent the category descriptions */
+    position: relative;
+}
+
+.glossary-notes-container ul ul li strong { /* For A, B, C, D, X, L1-L5 */
+    display: inline-block; /* Allow spacing and alignment */
+    width: 25px; /* Fixed width for alignment of category letters/numbers */
+    margin-right: 5px;
+    text-align: right;
+    color: #333;
+    /* Optional: Add a custom bullet or number for categories if desired */
+    /* content: counter(category-counter) ". "; */
+    /* counter-increment: category-counter; */
+}
+
+/* Specific styling for ordered lists (1., 2.) inside definitions */
+.glossary-notes-container ol {
+    list-style: decimal; /* Use numbers for ordered lists */
+    padding-left: 25px;
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 14px; /* Slightly smaller for nested details */
+    color: #666;
+}
+
+.glossary-notes-container ol li {
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+/* Styles for the toggle button of the Glossary */
+.toggle-glossary-btn {
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็นรูปมือเมื่อชี้ */
+    display: flex; /* ใช้ flexbox ในการจัดเรียงเนื้อหาภายใน */
+    justify-content: space-between; /* จัดให้ข้อความอยู่ซ้าย ไอคอนอยู่ขวา */
+    align-items: center; /* จัดกึ่งกลางแนวตั้ง */
+    padding: 10px 0; /* เพิ่มพื้นที่คลิกได้ */
+    /* ใช้สไตล์เดิมของ h3 เพื่อคงรูปแบบหัวข้อไว้ */
+    font-size: 20px;
+    font-weight: 700;
+    color: #31323a;
+    margin-bottom: 15px; /* ปรับ margin ตามความเหมาะสม */
+    border-bottom: 1px solid #eee; /* คงเส้นแบ่งใต้หัวข้อ */
+    transition: color 0.2s ease; /* เพิ่ม transition ให้กับการเปลี่ยนสี */
+}
+
+.toggle-glossary-btn:hover {
+    color: #007bff; /* เปลี่ยนสีเมื่อ hover เพื่อบ่งบอกว่าคลิกได้ */
+}
+
+.toggle-icon {
+    margin-left: 10px; /* ระยะห่างระหว่างข้อความกับไอคอน */
+    transition: transform 0.3s ease; /* เพิ่ม transition ให้กับการหมุน */
+    font-size: 16px; /* ขนาดไอคอน */
+}
+
+
+/* ========================================================= */
+/* === NEW STYLES FOR TREATMENT GUIDELINES TABLE === */
+/* ========================================================= */
+.treatment-guidelines-section .default-table {
+    /* ใช้สไตล์พื้นฐานจาก .default-table แต่เพิ่มความเฉพาะเจาะจง */
+    margin-top: 20px; /* เพิ่มระยะห่างจาก search */
+}
+
+.treatment-guidelines-section .default-table table {
+    /* ใช้สไตล์พื้นฐานจาก .default-table table */
+}
+
+/* กำหนดความกว้างเฉพาะคอลัมน์สำหรับตารางคำแนะนำแนวทางการรักษา */
+.treatment-table-container thead th:nth-child(1), /* โรคและอาการ */
+.treatment-table-container tbody td:nth-child(1) {
+    width: 30%; /* ปรับให้เหมาะสมกับเนื้อหาของชื่อโรค */
+}
+
+.treatment-table-container thead th:nth-child(2), /* ยาที่สามารถเลือกใช้ได้ในสตรีตั้งครรภ์ */
+.treatment-table-container tbody td:nth-child(2) {
+    width: 35%; /* แบ่งพื้นที่เท่าๆ กันสำหรับยา */
+}
+
+.treatment-table-container thead th:nth-child(3), /* ยาที่สามารถเลือกใช้ได้ในหญิงให้นมบุตร */
+.treatment-table-container tbody td:nth-child(3) {
+    width: 35%; /* แบ่งพื้นที่เท่าๆ กันสำหรับยา */
+}
+
+/* ปรับปรุง search-container สำหรับตาราง Guidelines */
+.treatment-guidelines-section .search-container {
+    margin-top: 30px; /* แยกจากตารางบน */
+    margin-bottom: 20px;
+}
+
+/* ปรับปรุง pagination controls สำหรับตาราง Guidelines */
+.treatment-guidelines-section .table-footer-controls {
+    border-top: 1px solid #eee; /* เส้นแบ่งด้านบน */
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+/* ========================================================= */
+/* === MEDIA QUERIES (สำหรับทั้งสองตารางให้มีพฤติกรรมเดียวกัน) === */
+/* ========================================================= */
+
+@media (max-width: 768px) {
+    /* ส่วนนี้จะใช้กับทั้ง #restricted-drugs-table และ .treatment-table-container */
+
+    .default-table {
+        overflow-x: hidden; /* บังคับไม่ให้มีแถบเลื่อนบนมือถือ */
+        padding: 10px; /* ลด padding ของ container ลงอีกสำหรับจอเล็ก */
+    }
+
+    .default-table table {
+        display: table !important; /* บังคับให้เป็นตารางปกติ */
+        width: 100% !important;
+    }
+    .default-table thead {
+        display: table-header-group !important;
+    }
+    .default-table tbody {
+        display: table-row-group !important;
+    }
+    .default-table tr {
+        display: table-row !important;
+        margin-bottom: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        background-color: transparent !important;
+    }
+    .default-table th,
+    .default-table td {
+        display: table-cell !important; /* บังคับให้เป็นเซลล์ตาราง */
+        padding: 4px !important; /* ลด padding ให้เล็กลงมาก */
+        font-size: 7px !important; /* ลดขนาดตัวอักษรให้เล็กลงมากยิ่งขึ้น */
+        line-height: 1.1 !important; /* ปรับ line-height เพื่อให้ข้อความชิดกันมากขึ้น */
+        vertical-align: top !important; /* จัดชิดด้านบน */
+        white-space: normal !important; /* อนุญาตให้ข้อความขึ้นบรรทัดใหม่ได้ */
+    }
+
+    /* การปรับการจัดตำแหน่งข้อความสำหรับมือถือ */
+    .default-table th {
+        text-align: center !important; /* หัวข้อตารางยังคงอยู่ตรงกลาง */
+    }
+
+    .default-table td {
+        text-align: left !important; /* เนื้อหาในเซลล์ตารางโดยรวมชิดซ้าย */
+    }
+
+    /* สลับกลับเป็นชิดกลางสำหรับคอลัมน์ที่ 2 และ 4 ของตารางยาที่ห้ามใช้ฯ ในมุมมองโทรศัพท์ */
+    #restricted-drugs-table tbody td:nth-child(2) {
+        text-align: center !important; /* Preg Cat. ชิดกลางบนมือถือ */
+    }
+    #restricted-drugs-table tbody td:nth-child(4) {
+        text-align: center !important; /* Lactation Cat. ชิดกลางบนมือถือ */
+    }
+
+    /* ลบ content ที่สร้าง header ซ้ำในแต่ละเซลล์ออก หากมีการใช้ใน media query เดิม */
+    .default-table td::before {
+        content: none !important;
+    }
+
+    /* ปรับขนาดความกว้างเฉพาะคอลัมน์ของ ตารางยาที่ห้ามใช้ฯ ใน Media Query สำหรับมือถืออีกครั้ง */
+    #restricted-drugs-table thead th:nth-child(1),
+    #restricted-drugs-table tbody td:nth-child(1) {
+        width: 25% !important; /* ชื่อยา */
+    }
+    #restricted-drugs-table thead th:nth-child(2), /* Preg Cat. */
+    #restricted-drugs-table tbody td:nth-child(2) {
+        width: 10% !important;
+    }
+    #restricted-drugs-table thead th:nth-child(3), /* ข้อมูลตั้งครรภ์ */
+    #restricted-drugs-table tbody td:nth-child(3) {
+        width: 27.5% !important;
+    }
+    #restricted-drugs-table thead th:nth-child(4), /* Lactation Cat. */
+    #restricted-drugs-table tbody td:nth-child(4) {
+        width: 10% !important;
+    }
+    #restricted-drugs-table thead th:nth-child(5), /* ข้อมูลให้นมบุตร */
+    #restricted-drugs-table tbody td:nth-child(5) {
+        width: 27.5% !important;
+    }
+
+    /* ปรับขนาดความกว้างเฉพาะคอลัมน์ของ ตารางคำแนะนำแนวทางการรักษาฯ ใน Media Query สำหรับมือถืออีกครั้ง */
+    .treatment-table-container thead th:nth-child(1), /* โรคและอาการ */
+    .treatment-table-container tbody td:nth-child(1) {
+        width: 30% !important;
+    }
+    .treatment-table-container thead th:nth-child(2), /* ยาตั้งครรภ์ */
+    .treatment-table-container tbody td:nth-child(2) {
+        width: 35% !important;
+    }
+    .treatment-table-container thead th:nth-child(3), /* ยานมบุตร */
+    .treatment-table-container tbody td:nth-child(3) {
+        width: 35% !important;
+    }
+
+
+    /* ปรับระยะห่างและจัดเรียง footer controls สำหรับมือถือ */
+    .table-footer-controls {
+        flex-direction: column;
+        align-items: center; /* จัดกึ่งกลางแทน flex-start */
+        gap: 15px;
+    }
+
+    .entries-per-page {
+        justify-content: center;
+        width: 100%; /* ให้เต็มความกว้าง */
+    }
+
+    .pagination {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .pagination li {
+        margin-bottom: 5px;
+    }
+    .pagination-info {
+        text-align: center; /* จัดกึ่งกลาง */
+    }
+}
+
+/* styles for clickable medications */
+.clickable-medication {
+    color: #007bff; /* สีน้ำเงินคล้ายลิงก์ */
+    text-decoration: underline; /* ขีดเส้นใต้ */
+    cursor: pointer; /* เปลี่ยน cursor เป็นรูปมือเมื่อชี้ */
+    font-weight: 500; /* ทำให้ตัวหนาขึ้นเล็กน้อย */
+    transition: color 0.2s ease-in-out; /* เพิ่ม transition เมื่อ hover */
+}
+
+.clickable-medication:hover {
+    color: #0056b3; /* สีน้ำเงินเข้มขึ้นเมื่อ hover */
+    text-decoration: none; /* เอาขีดเส้นใต้ออกเมื่อ hover เพื่อบอกว่า "กำลังจะคลิก" */
+}
+
+/* Highlight effect for scrolled-to rows (จากคำตอบก่อนหน้า ถ้ายังไม่มี) */
+@keyframes highlightFade {
+    from { background-color: #ffeb3b; } /* Bright yellow */
+    to { background-color: transparent; }
+}
+
+.highlight-row {
+    animation: highlightFade 2s ease-out forwards; /* Apply animation for 2 seconds */
+}
+
+.references-section {
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.references-section h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.references-section ol {
+    list-style-type: decimal;
+    padding-left: 25px;
+}
+
+.references-section li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    color: #555;
+}
+
+sup a {
+    text-decoration: none;
+    color: #007bff; /* สีลิงก์ */
+    font-size: 0.7em; /* ขนาดตัวเลขยกกำลัง */
+    vertical-align: super;
+    margin-left: 2px;
+}
+
+sup a:hover {
+    text-decoration: underline;
+}
