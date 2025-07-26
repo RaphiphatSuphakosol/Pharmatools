@@ -271,6 +271,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentPage = 1;
                 renderTable(selectedDrugs, currentPage);
             }
+            // Clear the input after selection to allow new searches
+            $(this).val(null).trigger('change');
+            // Ensure the dropdown closes after selection
+            $(this).select2('close');
+        });
+
+        // Add event listener for when the dropdown is opened
+        drugSearchInput.on('select2:opening', function() {
+            // Ensure the input is cleared when opening to prevent stale text
             $(this).val(null).trigger('change');
         });
 
@@ -370,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 valB = b.disease;
             } else if (column === 'pregnant-meds') {
                 valA = a.pregnant_meds;
-                valB = b.pregnant_meds; // Corrected from b.lactating_meds
+                valB = b.pregnant_meds;
             } else if (column === 'lactating-meds') {
                 valA = a.lactating_meds;
                 valB = b.lactating_meds;
@@ -593,6 +602,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 renderSelectedDiseaseTags();
                 filterTreatmentTable();
             }
+            // Clear the input after selection to allow new searches
+            $(this).val(null).trigger('change');
+            // Ensure the dropdown closes after selection
+            $(this).select2('close');
+        });
+
+        // Add event listener for when the dropdown is opened
+        diseaseSearchInput.on('select2:opening', function() {
+            // Ensure the input is cleared when opening to prevent stale text
             $(this).val(null).trigger('change');
         });
 
