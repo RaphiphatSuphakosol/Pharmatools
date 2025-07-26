@@ -633,7 +633,7 @@ document.addEventListener('DOMContentLoaded', function() {
         selectedDiseaseTagsContainer.addEventListener('click', function(event) {
             const button = event.target.closest('.remove-tag-btn');
             if (button) {
-                const diseaseNameToRemove = button.dataset.diseaseName;
+                const diseaseNameToRemove = button.dataset.diseaseName; // Get data-disease-name from the button
                 if (diseaseNameToRemove) { // Ensure the data attribute exists
                     selectedDiseases = selectedDiseases.filter(name => name !== diseaseNameToRemove);
                     renderSelectedDiseaseTags();
