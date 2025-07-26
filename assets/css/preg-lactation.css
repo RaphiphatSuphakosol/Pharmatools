@@ -440,16 +440,15 @@ textarea:focus {
 /* --- Styles for Glossary/Notes Section --- */
 .glossary-notes-container {
     background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 25px;
-    margin-top: 30px;
+    margin-top: 0px;
     margin-bottom: 30px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .glossary-notes-container h3 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     color: #31323a;
     margin-bottom: 20px;
@@ -484,8 +483,8 @@ textarea:focus {
 }
 
 .glossary-notes-container ul ul li {
-    font-size: 15px; /* Keep consistent with parent li for category text */
-    margin-bottom: 8px; /* Slightly more space between categories */
+    font-size: 10px; /* Keep consistent with parent li for category text */
+    margin-bottom: 2px; /* Slightly more space between categories */
     color: #555;
     padding-left: 20px; /* Indent the category descriptions */
     position: relative;
@@ -734,9 +733,10 @@ textarea:focus {
     animation: highlightFade 2s ease-out forwards; /* Apply animation for 2 seconds */
 }
 
+/* NEW CSS for references section */
 .references-section {
-    margin-top: 40px;
-    padding: 20px;
+    margin-top: 30px; /* ลด margin-top เล็กน้อย */
+    padding: 15px; /* ลด padding จาก 20px เหลือ 15px */
     border-top: 1px solid #eee;
     background-color: #f9f9f9;
     border-radius: 8px;
@@ -744,26 +744,28 @@ textarea:focus {
 
 .references-section h3 {
     color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* ลด margin-bottom จาก 15px เหลือ 10px */
+    font-size: 18px; /* ลดขนาด font จาก 20px เหลือ 18px */
 }
 
 .references-section ol {
     list-style-type: decimal;
-    padding-left: 25px;
+    padding-left: 20px; /* ลด padding-left จาก 25px เหลือ 20px */
 }
 
 .references-section li {
-    margin-bottom: 8px;
-    line-height: 1.5;
+    margin-bottom: 5px; /* ลด margin-bottom จาก 8px เหลือ 5px */
+    line-height: 1.4; /* ปรับ line-height ให้กระชับขึ้นเล็กน้อย */
     color: #555;
+    font-size: 14px; /* ลดขนาด font จาก 15px เหลือ 14px */
 }
 
 sup a {
     text-decoration: none;
-    color: #007bff; /* สีลิงก์ */
-    font-size: 0.7em; /* ขนาดตัวเลขยกกำลัง */
-    vertical-align: super;
-    margin-left: 2px;
+    color: #007bff; /* Link color for superscript numbers */
+    font-size: 0.65em; /* ลดขนาดตัวเลขยกกำลังจาก 0.7em เหลือ 0.65em */
+    vertical-align: super; /* Position as superscript */
+    margin-left: 2px; /* Small space after the text */
 }
 
 sup a:hover {
