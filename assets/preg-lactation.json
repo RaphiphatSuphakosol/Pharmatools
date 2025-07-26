@@ -1,0 +1,46 @@
+{
+  "restrictedDrugs": [
+    {
+      "name": "Isotretinoin...",
+      "pregnancy": "X",
+      "pregnancyInfo": "ห้ามใช้โดยเด็ดขาด!",
+      "lactation": "L5",
+      "lactationInfo": "ไม่แนะนำให้ใช้...",
+      "keywords": [
+        "Isotretinoin",
+        "Retin-A",
+        "Accutane"
+      ],
+      "references": [
+        "Clinical Guidelines for Dermatology, 2023",
+        "FDA Drug Safety Communication, 2022"
+      ]
+    },
+    {
+      "name": "Thalidomide",
+      "pregnancy": "X",
+      "pregnancyInfo": "ห้ามใช้โดยเด็ดขาด!",
+      "lactation": "L5",
+      "lactationInfo": "ไม่แนะนำให้ใช้...",
+      "keywords": [
+        "Thalidomide"
+      ],
+      "references": [
+        "WHO Model List of Essential Medicines, 2021",
+        "Journal of Teratology, 2000"
+      ]
+    }
+  ],
+  "treatmentGuidelines": [
+    {
+      "disease": "ไข้หวัดทั่วไป",
+      "pregnant_meds": "Paracetamol, Saline nasal spray",
+      "lactating_meds": "Paracetamol, Ibuprofen (หลังคลอด), Saline nasal spray"
+    },
+    {
+      "disease": "ปวดศีรษะ",
+      "pregnant_meds": "Paracetamol",
+      "lactating_meds": "Paracetamol, Ibuprofen"
+    }
+  ]
+}
