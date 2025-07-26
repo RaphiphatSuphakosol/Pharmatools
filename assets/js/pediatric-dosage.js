@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const ML_PER_TABLESPOON = 15;
 
     // =====================================================================
-    const DRUG_DATA_JSON_URL = 'https://RaphiphatSuphakosol.github.io/Pharmatools/assets/drug-data.json';
+    const DRUG_DATA_JSON_URL = 'https://RaphiphatSuphakosol.github.io/Pharmatools/assets/pediatric-dosage.json';
     // =====================================================================
 
 
