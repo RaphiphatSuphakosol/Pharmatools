@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             : drugsToDisplay.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
         if (paginatedDrugs.length === 0) {
-            tableBody.innerHTML = `<td colspan="5" style="text-align: center; padding: 20px;">ไม่พบข้อมูลยาที่คุณค้นหา</td>`;
+            tableBody.innerHTML = `<td colspan="5" style="text-align: center; color: red;">ไม่พบข้อมูลยาที่คุณค้นหา</td>`;
             renderPaginationControls(0, 0);
             renderPaginationInfo(0, 0, rowsPerPage);
             renderReferences([]);
@@ -629,16 +629,15 @@ document.addEventListener('DOMContentLoaded', function() {
             // $(this).focus();
         });
 
-        // Corrected event listener for removing disease tags
-        selectedDiseaseTagsContainer.addEventListener('click', function(event) {
-            const button = event.target.closest('.remove-tag-btn');
-            if (button) {
-                const diseaseNameToRemove = button.dataset.diseaseName; // Get data-disease-name from the button
-                if (diseaseNameToRemove) { // Ensure the data attribute exists
-                    selectedDiseases = selectedDiseases.filter(name => name !== diseaseNameToRemove);
-                    renderSelectedDiseaseTags();
-                    filterTreatmentTable();
-                }
+        // Corrected event listener for removing disease tags using jQuery .on() for event delegation
+        // This attaches the listener to the parent container, and it will listen for clicks on any .remove-tag-btn inside it
+        $(selectedDiseaseTagsContainer).on('click', '.remove-tag-btn', function(event) {
+            const button = $(this); // 'this' refers to the clicked button
+            const diseaseNameToRemove = button.data('diseaseName'); // Use .data() for data attributes
+            if (diseaseNameToRemove) {
+                selectedDiseases = selectedDiseases.filter(name => name !== diseaseNameToRemove);
+                renderSelectedDiseaseTags();
+                filterTreatmentTable();
             }
         });
 
