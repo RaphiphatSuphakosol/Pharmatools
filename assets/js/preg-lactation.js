@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data: uniqueSortedDrugDataForSelect2,
             theme: "default",
             width: '100%',
-            dropdownParent: $('.search-container') // Ensure this parent is correct and stable
+            dropdownParent: drugSearchInput.closest('.search-container') // แก้ไขตรงนี้
         });
 
         drugSearchInput.val(null).trigger('change');
