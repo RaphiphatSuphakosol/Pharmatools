@@ -3,26 +3,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // === RESTRICTED DRUGS TABLE ===
     // =========================================================
 
-    let drugsData = []; // จะถูกโหลดจาก JSON
-    let allTreatmentData = []; // จะถูกโหลดจาก JSON
+    let drugsData = []; // Data for restricted drugs
+    let allTreatmentData = []; // Data for treatment guidelines
 
-    // ฟังก์ชันสำหรับดึงข้อมูลจากไฟล์ JSON
+    // Function to fetch data from JSON file
     async function fetchData() {
         try {
-            // ดึงไฟล์ JSON ที่รวมข้อมูลไว้
+            // Fetch the single combined JSON file
             const response = await fetch('assets/preg-lactation.json');
             const combinedData = await response.json();
 
-            // กำหนดข้อมูลให้กับตัวแปรที่เกี่ยวข้อง
+            // Assign data to respective variables
             drugsData = combinedData.restrictedDrugs || [];
             allTreatmentData = combinedData.treatmentGuidelines || [];
 
-            // เริ่มต้นการทำงานหลังจากโหลดข้อมูลเสร็จสิ้น
+            // Initialize tables after data is loaded
             initializeRestrictedDrugsTable();
             initializeTreatmentGuidelinesTable();
         } catch (error) {
             console.error('Error fetching data:', error);
-            // แสดงข้อความแจ้งข้อผิดพลาดให้ผู้ใช้
+            // Display error message to user
             document.getElementById('restricted-drugs-table-body').innerHTML = '<tr><td colspan="5" style="text-align: center; color: red;">ข้อผิดพลาดในการโหลดข้อมูลยา กรุณาลองใหม่ภายหลัง</td></tr>';
             document.querySelector('.treatment-table-container tbody').innerHTML = '<tr><td colspan="3" style="text-align: center; color: red;">ข้อผิดพลาดในการโหลดข้อมูลคำแนะนำ กรุณาลองใหม่ภายหลัง</td></tr>';
         }
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let rowsPerPage = 5;
     let currentSortColumn = 'name';
     let sortDirection = 'asc';
-    let sortedDrugsData = []; // เริ่มต้นเป็นค่าว่าง จะถูกกำหนดหลังจากโหลดข้อมูล
+    let sortedDrugsData = []; // Initialized empty, will be set after fetch
 
     function sortData(column, direction) {
         sortedDrugsData.sort((a, b) => {
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data: uniqueSortedDrugDataForSelect2,
             theme: "default",
             width: '100%',
-            dropdownParent: drugSearchInput.closest('.search-container') // แก้ไขตรงนี้
+            dropdownParent: drugSearchInput.closest('.search-container')
         });
 
         drugSearchInput.val(null).trigger('change');
@@ -407,6 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <img src="image/remove_icon_red.png" alt="Remove">
                 </button>
             `;
+            tag.dataset.diseaseName = diseaseName; // Ensure data-disease-name is set on the tag itself
             selectedDiseaseTagsContainer.appendChild(tag);
         });
         selectedDiseaseTagsContainer.style.display = selectedDiseases.length > 0 ? 'flex' : 'none';
@@ -628,13 +629,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // $(this).focus();
         });
 
-
+        // Corrected event listener for removing disease tags
         selectedDiseaseTagsContainer.addEventListener('click', function(event) {
             const button = event.target.closest('.remove-tag-btn');
             if (button) {
-                const tag = button.closest('.selected-tag');
-                if (tag) {
-                    const diseaseNameToRemove = tag.dataset.diseaseName;
+                const diseaseNameToRemove = button.dataset.diseaseName;
+                if (diseaseNameToRemove) { // Ensure the data attribute exists
                     selectedDiseases = selectedDiseases.filter(name => name !== diseaseNameToRemove);
                     renderSelectedDiseaseTags();
                     filterTreatmentTable();
