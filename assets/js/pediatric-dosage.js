@@ -380,126 +380,523 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error fetching drug data from GitHub Pages:", error);
             // Fallback: ถ้าโหลดไม่ได้ ให้ใช้ข้อมูลยาแบบ embedded เก่า (ใส่ข้อมูลสำรองไว้ตรงนี้)
             allDrugs = [
-                {
-                    "name": "Paracetamol",
-                    "initialConcentration": 24, // mg/ml
-                    "initialDosageOption": {
-                        "display": "10-15 mg/kg/dose",
-                        "min": 10,
-                        "max": 15,
-                        "unit": "mg/dose"
-                    },
-                    "initialFrequencyOption": {
-                        "display": "ทุก 4-6 ชั่วโมง",
-                        "dosesPerDay": 4,
-                        "text": "(ไม่เกิน 5 ครั้ง/วัน)",
-                        "frequencyText": "ทุก 4-6 ชม. เมื่อมีไข้"
-                    },
-                    "concentrations": [
-                        { "display": "60mg/0.6ml", "mgPerMl": 100, "defaultVolumeMl": 60 },
-                        { "display": "80mg/0.8ml", "mgPerMl": 100, "defaultVolumeMl": 60 },
-                        { "display": "120mg/5ml", "mgPerMl": 24, "defaultVolumeMl": 60 },
-                        { "display": "125mg/5ml", "mgPerMl": 25, "defaultVolumeMl": 60 },
-                        { "display": "160mg/5ml", "mgPerMl": 32, "defaultVolumeMl": 60 },
-                        { "display": "250mg/5ml", "mgPerMl": 50, "defaultVolumeMl": 60 }
-                    ],
-                    "dosageOptions": [
-                        { "display": "10-15 mg/kg/dose", "min": 10, "max": 15, "unit": "mg/dose" }
-                    ],
-                    "frequencyOptions": [
-                        { "display": "ทุก 4-6 ชั่วโมง", "dosesPerDay": 4, "text": "(ไม่เกิน 5 ครั้ง/วัน)", "frequencyText": "ทุก 4-6 ชม. เมื่อมีไข้" }
-                    ],
-                    "dispenseType": "PRN",
-                    "packageSizes": [30, 60, 100]
-                },
-                {
-                    "name": "Amoxicillin",
-                    "initialConcentration": 50, // mg/ml
-                    "initialDosageOption": {
-                        "display": "40-50 mg/kg/day",
-                        "min": 40,
-                        "max": 50,
-                        "unit": "mg/day"
-                    },
-                    "initialFrequencyOption": {
-                        "display": "วันละ 2 ครั้ง",
-                        "dosesPerDay": 2,
-                        "text": "(เช้า-เย็น)",
-                        "frequencyText": "วันละ 2 ครั้ง"
-                    },
-                    "concentrations": [
-                        { "display": "250mg/5ml", "mgPerMl": 50, "defaultVolumeMl": 60 },
-                        { "display": "125mg/5ml", "mgPerMl": 25, "defaultVolumeMl": 60 }
-                    ],
-                    "dosageOptions": [
-                        { "display": "40-50 mg/kg/day", "min": 40, "max": 50, "unit": "mg/day" },
-                        { "display": "80-90 mg/kg/day", "min": 80, "max": 90, "unit": "mg/day" }
-                    ],
-                    "frequencyOptions": [
-                        { "display": "วันละ 2 ครั้ง", "dosesPerDay": 2, "text": "(เช้า-เย็น)", "frequencyText": "วันละ 2 ครั้ง" },
-                        { "display": "วันละ 3 ครั้ง", "dosesPerDay": 3, "text": "(เช้า-กลางวัน-เย็น)", "frequencyText": "วันละ 3 ครั้ง" },
-                        { "display": "วันละครั้ง", "dosesPerDay": 1, "text": "(วันละครั้ง)", "frequencyText": "วันละครั้ง" }
-                    ],
-                    "dispenseType": "regular",
-                    "packageSizes": [30, 60, 100, 120]
-                },
-                {
-                    "name": "Ibuprofen",
-                    "initialConcentration": 20, // mg/ml
-                    "initialDosageOption": {
-                        "display": "5-10 mg/kg/dose",
-                        "min": 5,
-                        "max": 10,
-                        "unit": "mg/dose"
-                    },
-                    "initialFrequencyOption": {
-                        "display": "ทุก 6-8 ชั่วโมง",
-                        "dosesPerDay": 3,
-                        "text": "(ไม่เกิน 4 ครั้ง/วัน)",
-                        "frequencyText": "ทุก 6-8 ชม. เมื่อมีไข้/ปวด"
-                    },
-                    "concentrations": [
-                        { "display": "100mg/5ml", "mgPerMl": 20, "defaultVolumeMl": 60 },
-                        { "display": "200mg/5ml", "mgPerMl": 40, "defaultVolumeMl": 60 }
-                    ],
-                    "dosageOptions": [
-                        { "display": "5-10 mg/kg/dose", "min": 5, "max": 10, "unit": "mg/dose" }
-                    ],
-                    "frequencyOptions": [
-                        { "display": "ทุก 6-8 ชั่วโมง", "dosesPerDay": 3, "text": "(ไม่เกิน 4 ครั้ง/วัน)", "frequencyText": "ทุก 6-8 ชม. เมื่อมีไข้/ปวด" }
-                    ],
-                    "dispenseType": "PRN",
-                    "packageSizes": [60, 120]
-                },
-                {
-                    "name": "Salbutamol",
-                    "initialConcentration": 0.4, // mg/ml (2mg/5ml)
-                    "initialDosageOption": {
-                        "display": "0.1-0.2 mg/kg/dose",
-                        "min": 0.1,
-                        "max": 0.2,
-                        "unit": "mg/dose"
-                    },
-                    "initialFrequencyOption": {
-                        "display": "ทุก 6-8 ชั่วโมง",
-                        "dosesPerDay": 3,
-                        "text": "",
-                        "frequencyText": "ทุก 6-8 ชม."
-                    },
-                    "concentrations": [
-                        { "display": "2mg/5ml", "mgPerMl": 0.4, "defaultVolumeMl": 60 }
-                    ],
-                    "dosageOptions": [
-                        { "display": "0.1-0.2 mg/kg/dose", "min": 0.1,
-                          "max": 0.2,
-                          "unit": "mg/dose" }
-                    ],
-                    "frequencyOptions": [
-                        { "display": "ทุก 6-8 ชั่วโมง", "dosesPerDay": 3, "text": "", "frequencyText": "ทุก 6-8 ชม." }
-                    ],
-                    "dispenseType": "PRN",
-                    "packageSizes": [60, 100]
-                }
+                [
+  {
+    "name": "Paracetamol",
+    "dispenseType": "PRN",
+    "packageSizes": [
+      60
+    ],
+    "concentrations": [
+      {
+        "display": "60mg/0.6ml",
+        "mgPerMl": 100,
+        "defaultVolumeMl": 15
+      },
+      {
+        "display": "80mg/0.8ml",
+        "mgPerMl": 100,
+        "defaultVolumeMl": 15
+      },
+      {
+        "display": "100 mg/1ml",
+        "mgPerMl": 100,
+        "defaultVolumeMl": 15
+      },
+      {
+        "display": "120mg/5ml",
+        "mgPerMl": 24,
+        "defaultVolumeMl": 60
+      },
+      {
+        "display": "125mg/5ml",
+        "mgPerMl": 25,
+        "defaultVolumeMl": 60
+      },
+      {
+        "display": "160mg/5ml",
+        "mgPerMl": 32,
+        "defaultVolumeMl": 60
+      },
+      {
+        "display": "250mg/5ml",
+        "mgPerMl": 50,
+        "defaultVolumeMl": 60
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "10-15 mg/kg/dose",
+        "min": 10,
+        "max": 15,
+        "unit": "mg/dose"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "ทุก 4-6 ชั่วโมง",
+        "dosesPerDay": 4,
+        "text": "(ไม่เกิน 5 ครั้ง/วัน)",
+        "frequencyText": "ทุก 4-6 ชม. เมื่อมีไข้หรือปวด"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "10-15 mg/kg/dose",
+      "min": 10,
+      "max": 15,
+      "unit": "mg/dose"
+    },
+    "initialFrequencyOption": {
+      "display": "ทุก 4-6 ชั่วโมง",
+      "dosesPerDay": 4,
+      "text": "(ไม่เกิน 5 ครั้ง/วัน)",
+      "frequencyText": "ทุก 4-6 ชม. เมื่อมีไข้หรือปวด"
+    }
+  },
+  {
+    "name": "Amoxicillin",
+    "dispenseType": "regular",
+    "packageSizes": [
+      60
+    ],
+    "concentrations": [
+      {
+        "display": "250mg/5ml",
+        "mgPerMl": 50,
+        "defaultVolumeMl": 60
+      },
+      {
+        "display": "125mg/5ml",
+        "mgPerMl": 25,
+        "defaultVolumeMl": 60
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "40-50 mg/kg/day",
+        "min": 40,
+        "max": 50,
+        "unit": "mg/day"
+      },
+      {
+        "display": "80-90 mg/kg/day",
+        "min": 80,
+        "max": 90,
+        "unit": "mg/day"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "วันละ 1 ครั้ง",
+        "dosesPerDay": 1,
+        "text": "(เช้า)",
+        "frequencyText": "วันละ 1 ครั้ง"
+      },
+      {
+        "display": "วันละ 2 ครั้ง",
+        "dosesPerDay": 2,
+        "text": "(เช้า-เย็น)",
+        "frequencyText": "วันละ 2 ครั้ง"
+      },
+      {
+        "display": "วันละ 3 ครั้ง",
+        "dosesPerDay": 3,
+        "text": "(เช้า-กลางวัน-เย็น)",
+        "frequencyText": "วันละ 3 ครั้ง"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "40-50 mg/kg/day",
+      "min": 40,
+      "max": 50,
+      "unit": "mg/day"
+    },
+    "initialFrequencyOption": {
+      "display": "วันละ 2 ครั้ง",
+      "dosesPerDay": 2,
+      "text": "(เช้า-เย็น)",
+      "frequencyText": "วันละ 2 ครั้ง"
+    }
+  },
+  {
+    "name": "Ibuprofen",
+    "dispenseType": "PRN",
+    "packageSizes": [
+      60
+    ],
+    "concentrations": [
+      {
+        "display": "100mg/5ml",
+        "mgPerMl": 20,
+        "defaultVolumeMl": 60
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "5-10 mg/kg/dose",
+        "min": 5,
+        "max": 10,
+        "unit": "mg/dose"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "ทุก 6-8 ชั่วโมง",
+        "dosesPerDay": 3,
+        "text": "(ไม่เกิน 4 ครั้ง/วัน)",
+        "frequencyText": "ทุก 6-8 ชั่วโมง เมื่อมีไข้หรือปวด"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "5-10 mg/kg/dose",
+      "min": 5,
+      "max": 10,
+      "unit": "mg/dose"
+    },
+    "initialFrequencyOption": {
+      "display": "ทุก 6-8 ชั่วโมง",
+      "dosesPerDay": 3,
+      "text": "(ไม่เกิน 4 ครั้ง/วัน)",
+      "frequencyText": "ทุก 6-8 ชั่วโมง เมื่อมีไข้หรือปวด"
+    }
+  },
+  {
+    "name": "Dicloxacillin",
+    "dispenseType": "regular",
+    "packageSizes": [
+      60
+    ],
+    "concentrations": [
+      {
+        "display": "125mg/5ml",
+        "mgPerMl": 25,
+        "defaultVolumeMl": 60
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "12.5-25 mg/kg/day",
+        "min": 12.5,
+        "max": 25,
+        "unit": "mg/day"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "วันละ 4 ครั้ง",
+        "dosesPerDay": 4,
+        "text": "(ก่อนอาหาร เช้า เที่ยง เย็น ก่อนนอน)",
+        "frequencyText": "วันละ 4 ครั้ง"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "12.5-25 mg/kg/day",
+      "min": 12.5,
+      "max": 25,
+      "unit": "mg/day"
+    },
+    "initialFrequencyOption": {
+      "display": "วันละ 4 ครั้ง",
+      "dosesPerDay": 4,
+      "text": "(ก่อนอาหาร เช้า เที่ยง เย็น ก่อนนอน)",
+      "frequencyText": "วันละ 4 ครั้ง"
+    }
+  },
+  {
+    "name": "Diphenhydramine ",
+    "dispenseType": "PRN",
+    "packageSizes": [
+      60
+    ],
+    "concentrations": [
+      {
+        "display": "12.5mg/5ml",
+        "mgPerMl": 2.5,
+        "defaultVolumeMl": 60
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "1-2 mg/kg/dose",
+        "min": 1,
+        "max": 2,
+        "unit": "mg/dose"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "วันละ 3 ครั้ง",
+        "dosesPerDay": 3,
+        "text": "(เช้า เที่ยง เย็น)",
+        "frequencyText": "วันละ 3 ครั้ง"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "1-2 mg/kg/dose",
+      "min": 1,
+      "max": 2,
+      "unit": "mg/dose"
+    },
+    "initialFrequencyOption": {
+      "display": "วันละ 3 ครั้ง",
+      "dosesPerDay": 3,
+      "text": "(เช้า เที่ยง เย็น)",
+      "frequencyText": "วันละ 3 ครั้ง"
+    }
+  },
+  {
+    "name": "Hydroxyzine",
+    "dispenseType": "PRN",
+    "packageSizes": [
+      60
+    ],
+    "concentrations": [
+      {
+        "display": "10mg/5ml",
+        "mgPerMl": 2,
+        "defaultVolumeMl": 60
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "0.6 mg/kg/day",
+        "min": 0.6,
+        "max": 0.6,
+        "unit": "mg/day"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "วันละ 2 ครั้ง",
+        "dosesPerDay": 2,
+        "text": "(เช้า-เย็น)",
+        "frequencyText": "วันละ 2 ครั้ง"
+      },
+      {
+        "display": "วันละ 3 ครั้ง",
+        "dosesPerDay": 3,
+        "text": "(เช้า-กลางวัน-เย็น)",
+        "frequencyText": "วันละ 3 ครั้ง"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "0.6 mg/kg/day",
+      "min": 0.6,
+      "max": 0.6,
+      "unit": "mg/day"
+    },
+    "initialFrequencyOption": {
+      "display": "วันละ 2 ครั้ง",
+      "dosesPerDay": 2,
+      "text": "(เช้า-เย็น)",
+      "frequencyText": "วันละ 2 ครั้ง"
+    }
+  },
+  {
+    "name": "Cetirizine",
+    "dispenseType": "PRN",
+    "packageSizes": [
+      60
+    ],
+    "concentrations": [
+      {
+        "display": "5mg/5ml",
+        "mgPerMl": 1,
+        "defaultVolumeMl": 60
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "0.25 mg/kg/day",
+        "min": 0.25,
+        "max": 0.25,
+        "unit": "mg/day"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "วันละ 1 ครั้ง",
+        "dosesPerDay": 1,
+        "text": "(ก่อนนอน)",
+        "frequencyText": "วันละ 1 ครั้ง"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "0.25 mg/kg/day",
+      "min": 0.25,
+      "max": 0.25,
+      "unit": "mg/day"
+    },
+    "initialFrequencyOption": null
+  },
+  {
+    "name": "Chlorpheniramine",
+    "dispenseType": "PRN",
+    "packageSizes": [
+      60
+    ],
+    "concentrations": [
+      {
+        "display": "2mg/5ml",
+        "mgPerMl": 0.4,
+        "defaultVolumeMl": 60
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "0.35 mg/kg/day",
+        "min": 0.35,
+        "max": 0.35,
+        "unit": "mg/day"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "วันละ 3 ครั้ง",
+        "dosesPerDay": 3,
+        "text": "(เช้า-กลางวัน-เย็น)",
+        "frequencyText": "วันละ 3 ครั้ง"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "0.35 mg/kg/day",
+      "min": 0.35,
+      "max": 0.35,
+      "unit": "mg/day"
+    },
+    "initialFrequencyOption": {
+      "display": "วันละ 3 ครั้ง",
+      "dosesPerDay": 3,
+      "text": "(เช้า-กลางวัน-เย็น)",
+      "frequencyText": "วันละ 3 ครั้ง"
+    }
+  },
+  {
+    "name": "Brompheniramine",
+    "dispenseType": "PRN",
+    "packageSizes": [
+      60
+    ],
+    "concentrations": [
+      {
+        "display": "2mg/5ml",
+        "mgPerMl": 0.4,
+        "defaultVolumeMl": 60
+      },
+      {
+        "display": "4mg/5ml",
+        "mgPerMl": 0.8,
+        "defaultVolumeMl": 60
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "0.5 mg/kg/day",
+        "min": 0.5,
+        "max": 0.5,
+        "unit": "mg/day"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "วันละ 3 ครั้ง",
+        "dosesPerDay": 3,
+        "text": "(เช้า-กลางวัน-เย็น)",
+        "frequencyText": "วันละ 3 ครั้ง"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "0.5 mg/kg/day",
+      "min": 0.5,
+      "max": 0.5,
+      "unit": "mg/day"
+    },
+    "initialFrequencyOption": {
+      "display": "วันละ 3 ครั้ง",
+      "dosesPerDay": 3,
+      "text": "(เช้า-กลางวัน-เย็น)",
+      "frequencyText": "วันละ 3 ครั้ง"
+    }
+  },
+  {
+    "name": "Domperidone",
+    "dispenseType": "PRN",
+    "packageSizes": [
+      60
+    ],
+    "concentrations": [
+      {
+        "display": "5mg/5ml",
+        "mgPerMl": 1,
+        "defaultVolumeMl": 60
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "0.2-0.4 mg/kg/day",
+        "min": 0.2,
+        "max": 0.4,
+        "unit": "mg/dose"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "วันละ 3 ครั้ง",
+        "dosesPerDay": 3,
+        "text": "(เช้า-กลางวัน-เย็น)",
+        "frequencyText": "วันละ 3 ครั้ง"
+      }
+    ],
+    "initialDosageOption": null,
+    "initialFrequencyOption": {
+      "display": "วันละ 3 ครั้ง",
+      "dosesPerDay": 3,
+      "text": "(เช้า-กลางวัน-เย็น)",
+      "frequencyText": "วันละ 3 ครั้ง"
+    }
+  },
+  {
+    "name": "Gauifenesin (<2 y)",
+    "dispenseType": "PRN",
+    "packageSizes": [
+      60
+    ],
+    "concentrations": [
+      {
+        "display": "13.3mg/5ml",
+        "mgPerMl": 2.66,
+        "defaultVolumeMl": 60
+      }
+    ],
+    "dosageOptions": [
+      {
+        "display": "12 mg/kg/day",
+        "min": 12,
+        "max": 12,
+        "unit": "mg/day"
+      }
+    ],
+    "frequencyOptions": [
+      {
+        "display": "วันละ 3 ครั้ง",
+        "dosesPerDay": 3,
+        "text": "(เช้า-กลางวัน-เย็น)",
+        "frequencyText": "วันละ 3 ครั้ง"
+      }
+    ],
+    "initialDosageOption": {
+      "display": "12 mg/kg/day",
+      "min": 12,
+      "max": 12,
+      "unit": "mg/day"
+    },
+    "initialFrequencyOption": {
+      "display": "วันละ 3 ครั้ง",
+      "dosesPerDay": 3,
+      "text": "(เช้า-กลางวัน-เย็น)",
+      "frequencyText": "วันละ 3 ครั้ง"
+    }
+  }
             ];
             initializeApplication(); // เรียก initializeApplication ด้วยข้อมูล fallback
         }
